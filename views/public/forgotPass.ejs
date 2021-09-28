@@ -1,0 +1,26 @@
+<%- include("./includeBreadCrumb") %>
+    <div class="customer_login mt-60">
+        <div class="container">
+            <div class="row">
+                <!--register area start-->
+                <div class="col-lg-6 col-md-6 offset-lg-3 offset-md-3">
+                    <div class="account_form register">
+                        <h2>فراموشی رمز عبور</h2>
+                        <%- include("../includes/alert") %>
+                            <form action="/auth/forgotpass" method="post">
+                                <p>
+                                    <label>شماره همراه <span>*</span></label>
+                                    <input type="text" name="mobile">
+                                </p>
+                                <div class="login_submit">
+                                    <button type="submit">فراموشی رمز عبور</button>
+                                </div>
+                            </form>
+                    </div>
+                </div>
+                <!--register area end-->
+            </div>
+        </div>
+    </div>
+    <button class="g-recaptcha" style="display: none;" data-sitekey="6Lc9mpMcAAAAAEu1xOZxmz8OpAjr8DToN7F5wpMQ"
+        data-callback='onSubmit' data-action='submit'>Submit</button>

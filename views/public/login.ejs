@@ -1,0 +1,37 @@
+<%- include("./includeBreadCrumb") %>
+    <div class="customer_login mt-60">
+        <div class="container">
+            <div class="row">
+                <!--register area start-->
+                <div class="col-lg-6 col-md-6 offset-lg-3 offset-md-3">
+                    <div class="account_form register">
+                        <h2>ورود</h2>
+                        <%- include("../includes/errors") %>
+                            <%- include("../includes/message") %>
+                                <%- include("../includes/loginError") %>
+                                    <form action="/auth/login" method="post">
+                                        <p>
+                                            <label>شماره همراه <span>*</span></label>
+                                            <input type="text" name="mobile">
+                                        </p>
+                                        <p>
+                                            <label>رمز عبور <span>*</span></label>
+                                            <input type="password" name="password">
+                                        </p>
+                                        <div class="login_submit">
+                                            <a href="/auth/register">برای ثبت نام از اینجا اقدام کنید</a>
+                                            <label for="remember">
+                                                <input id="remember" type="checkbox" name="remember"> به خاطر سپاری
+                                            </label>
+                                            <button type="submit">ورود</button>
+                                        </div>
+                                    </form>
+                                    <a href="/auth/forgotpass">رمز عبور خود را فراموش کرده اید؟</a>
+                    </div>
+                </div>
+                <!--register area end-->
+            </div>
+        </div>
+    </div>
+    <button class="g-recaptcha" style="display: none;" data-sitekey="6Lc9mpMcAAAAAEu1xOZxmz8OpAjr8DToN7F5wpMQ"
+        data-callback='onSubmit' data-action='submit'>Submit</button>
