@@ -60,8 +60,21 @@ app.use(express.static(path.join(__dirname, "public")))
 
 // ! routes
 app.use("/", require('./src/components/public/homeRouter'))
+app.use("/", require('./src/components/contact/contactRouter'))
 app.use("/auth", require('./src/components/auth/authRouter'))
+app.use("/user", require('./src/components/user/userRouter'))
 
+
+
+
+// !404Page
+const { auth } = require('./src/middleware/isLogged');
+app.use("*", (req, res) => {
+    res.render('public/pages/404.ejs', {
+        title: "صفحه 404",
+        auth,
+    })
+})
 
 
 // !server RUN

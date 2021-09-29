@@ -21,6 +21,11 @@
 	<!-- Main Style CSS -->
 	<link rel="stylesheet" href="/css/style.css">
 
+	<!-- Main Style CSS -->
+	<%if(path=== "/account" ){%>
+		<link rel="stylesheet" href="/css/custom.css">
+		<%}%>
+
 </head>
 
 <body>
@@ -47,8 +52,13 @@
 						</div>
 						<div class="top_right text-right">
 							<ul>
-								<li><a href="/auth/login"> حساب کاربری </a></li>
-								<li><a href="checkout.html"> پرداخت </a></li>
+								<%if(auth) {%>
+									<li><a href="/auth/logout"> خروج </a></li>
+									<li><a href="/myaccount"> پنل کاربری </a></li>
+									<%}else{%>
+										<li><a href="/auth/login"> حساب کاربری </a></li>
+										<%}%>
+											<li><a href="checkout.html"> پرداخت </a></li>
 							</ul>
 						</div>
 						<div class="search_container">
@@ -174,8 +184,13 @@
 												<li><a href="cart.html">سبد خرید</a></li>
 												<li><a href="wishlist.html">لیست علاقه‌مندی‌ها</a></li>
 												<li><a href="checkout.html">پرداخت</a></li>
-												<li><a href="/auth/login">حساب کاربری</a></li>
-												<li><a href="404.html">خطای 404</a></li>
+												<%if(auth) {%>
+													<li><a href="/auth/logout"> خروج </a></li>
+													<li><a href="/user/myaccount">پنل کاربری </a></li>
+													<%}else{%>
+														<li><a href="/auth/login"> حساب کاربری </a></li>
+														<%}%>
+															<li><a href="404.html">خطای 404</a></li>
 											</ul>
 										</li>
 										<li class="menu-item-has-children">
@@ -204,7 +219,7 @@
 								<li class="menu-item-has-children">
 									<a href="#">صفحات </a>
 									<ul class="sub-menu">
-										<li><a href="about.html">درباره ما</a></li>
+										<li><a href="/aboutUs">درباره ما</a></li>
 										<li><a href="services.html">خدمات</a></li>
 										<li><a href="privacy-policy.html">سیاست حریم خصوصی</a></li>
 										<li><a href="faq.html">سوالات متداول</a></li>
@@ -214,14 +229,18 @@
 									</ul>
 								</li>
 								<li class="menu-item-has-children">
-									<a href="/auth/login">حساب کاربری</a>
-								</li>
-								<li class="menu-item-has-children">
-									<a href="about.html">درباره ما</a>
-								</li>
-								<li class="menu-item-has-children">
-									<a href="contact.html"> تماس با ما</a>
-								</li>
+									<%if(auth) {%>
+								<li><a href="/auth/logout"> خروج </a></li>
+								<%}else{%>
+									<li><a href="/auth/login"> حساب کاربری </a></li>
+									<%}%>
+										</li>
+										<li class="menu-item-has-children">
+											<a href="/aboutUs">درباره ما</a>
+										</li>
+										<li class="menu-item-has-children">
+											<a href="/contactus"> تماس با ما</a>
+										</li>
 							</ul>
 						</div>
 
@@ -256,8 +275,13 @@
 						<div class="col-lg-6 col-md-6">
 							<div class="top_right text-right">
 								<ul>
-									<li><a href="/auth/login"> حساب کاربری </a></li>
-									<li><a href="checkout.html"> پرداخت </a></li>
+									<%if(auth) {%>
+										<li><a href="/auth/logout"> خروج </a></li>
+										<li><a href="/user/myaccount">پنل کاربری </a></li>
+										<%}else{%>
+											<li><a href="/auth/login"> حساب کاربری </a></li>
+											<%}%>
+												<li><a href="checkout.html"> پرداخت </a></li>
 								</ul>
 							</div>
 						</div>
@@ -271,7 +295,7 @@
 					<div class="row align-items-center">
 						<div class="col-lg-3 col-md-6">
 							<div class="logo">
-								<a href="index.html"><img src="/img/logo/logo.png" alt=""></a>
+								<a href="/"><img src="/img/logo/logo.png" alt=""></a>
 							</div>
 						</div>
 						<div class="col-lg-9 col-md-6">
@@ -539,8 +563,13 @@
 															<li><a href="cart.html">سبد خرید</a></li>
 															<li><a href="wishlist.html">لیست علاقه‌مندی‌ها</a></li>
 															<li><a href="checkout.html">پرداخت</a></li>
-															<li><a href="/auth/login">حساب کاربری</a></li>
-															<li><a href="404.html">خطای 404</a></li>
+															<%if(auth) {%>
+																<li><a href="/auth/logout"> خروج </a></li>
+																<%}else{%>
+																	<li><a href="/auth/login"> حساب کاربری </a></li>
+																	<li><a href="/user/myaccount">پنل کاربری </a></li>
+																	<%}%>
+																		<li><a href="404.html">خطای 404</a></li>
 														</ul>
 													</li>
 													<li><a href="#">انواع محصول</a>
@@ -580,18 +609,18 @@
 										</li>
 										<li><a href="#">صفحات <i class="fa fa-angle-down"></i></a>
 											<ul class="sub_menu pages">
-												<li><a href="about.html">درباره ما</a></li>
+												<li><a href="/aboutUs">درباره ما</a></li>
 												<li><a href="services.html">خدمات</a></li>
 												<li><a href="privacy-policy.html">سیاست حریم خصوصی</a></li>
 												<li><a href="faq.html">سوالات متداول</a></li>
-												<li><a href="contact.html">تماس</a></li>
+												<li><a href="/contactus">تماس</a></li>
 												<li><a href="login.html">ورود</a></li>
 												<li><a href="404.html">خطای 404</a></li>
 											</ul>
 										</li>
 
-										<li><a href="about.html">درباره ما</a></li>
-										<li><a href="contact.html"> تماس با ما</a></li>
+										<li><a href="/aboutUs">درباره ما</a></li>
+										<li><a href="/contactus"> تماس با ما</a></li>
 									</ul>
 								</nav>
 							</div>
@@ -610,7 +639,7 @@
 			<div class="row align-items-center">
 				<div class="col-lg-3">
 					<div class="logo">
-						<a href="index.html"><img src="/img/logo/logo.png" alt=""></a>
+						<a href="/aboutUs"><img src="/img/logo/logo.png" alt=""></a>
 					</div>
 				</div>
 				<div class="col-lg-9">
@@ -618,7 +647,7 @@
 						<div class="main_menu">
 							<nav>
 								<ul>
-									<li><a class="active" href="index.html">خانه<i class="fa fa-angle-down"></i></a>
+									<li><a class="active" href="/aboutUs">خانه<i class="fa fa-angle-down"></i></a>
 										<ul class="sub_menu">
 											<li><a href="index.html">خانه فروشگاه 1</a></li>
 											<li><a href="index-2.html">خانه فروشگاه 2</a></li>
@@ -646,8 +675,13 @@
 														<li><a href="cart.html">سبد خرید</a></li>
 														<li><a href="wishlist.html">لیست علاقه‌مندی‌ها</a></li>
 														<li><a href="checkout.html">پرداخت</a></li>
-														<li><a href="/auth/login">حساب کاربری</a></li>
-														<li><a href="404.html">خطای 404</a></li>
+														<%if(auth) {%>
+															<li><a href="/auth/logout"> خروج </a></li>
+															<li><a href="/user/myaccount">پنل کاربری </a></li>
+															<%}else{%>
+																<li><a href="/auth/login"> حساب کاربری </a></li>
+																<%}%>
+																	<li><a href="404.html">خطای 404</a></li>
 													</ul>
 												</li>
 												<li><a href="#">انواع محصول</a>
@@ -684,18 +718,18 @@
 									</li>
 									<li><a href="#">صفحات <i class="fa fa-angle-down"></i></a>
 										<ul class="sub_menu pages">
-											<li><a href="about.html">درباره ما</a></li>
+											<li><a href="/aboutUs">درباره ما</a></li>
 											<li><a href="services.html">خدمات</a></li>
 											<li><a href="privacy-policy.html">سیاست حریم خصوصی</a></li>
 											<li><a href="faq.html">سوالات متداول</a></li>
-											<li><a href="contact.html">تماس</a></li>
+											<li><a href="auth/contactus">تماس</a></li>
 											<li><a href="login.html">ورود</a></li>
 											<li><a href="404.html">خطای 404</a></li>
 										</ul>
 									</li>
 
-									<li><a href="about.html">درباره ما</a></li>
-									<li><a href="contact.html"> تماس با ما</a></li>
+									<li><a href="/aboutUs">درباره ما</a></li>
+									<li><a href="/contactus"> تماس با ما</a></li>
 								</ul>
 							</nav>
 						</div>
@@ -798,7 +832,7 @@
 								<h3>اطلاعات</h3>
 								<div class="footer_menu">
 									<ul>
-										<li><a href="about.html">درباره ما</a></li>
+										<li><a href="/aboutUs">درباره ما</a></li>
 										<li><a href="blog.html">نحوه ارسال</a></li>
 										<li><a href="contact.html">سیاست حریم خصوصی</a></li>
 										<li><a href="services.html">قوانین و مقررات</a></li>
@@ -810,15 +844,19 @@
 						</div>
 						<div class="col-lg-2 col-md-6 col-sm-6">
 							<div class="widgets_container widget_menu">
-								<h3>حساب کاربری</h3>
 								<div class="footer_menu">
 									<ul>
-										<li><a href="/auth/login">حساب کاربری</a></li>
-										<li><a href="#">سابقه خرید</a></li>
-										<li><a href="wishlist.html">علاقه‌مندی‌ها</a></li>
-										<li><a href="#">خبرنامه</a></li>
-										<li><a href="#">نمایندگی ها</a></li>
-										<li><a href="faq.html">سفارشات بین المللی</a></li>
+										<%if(auth) {%>
+											<li><a href="/auth/logout"> خروج </a></li>
+											<li><a href="/user/myaccount">پنل کاربری </a></li>
+											<%}else{%>
+												<li><a href="/auth/login"> حساب کاربری </a></li>
+												<%}%>
+													<li><a href="#">سابقه خرید</a></li>
+													<li><a href="wishlist.html">علاقه‌مندی‌ها</a></li>
+													<li><a href="#">خبرنامه</a></li>
+													<li><a href="#">نمایندگی ها</a></li>
+													<li><a href="faq.html">سفارشات بین المللی</a></li>
 									</ul>
 								</div>
 							</div>
@@ -867,7 +905,7 @@
 					<div class="row align-items-center">
 						<div class="col-lg-6 col-md-6">
 							<div class="copyright_area">
-								<p>toplearn</p>
+								<p>raba group</p>
 							</div>
 						</div>
 						<div class="col-lg-6 col-md-6">
@@ -1056,13 +1094,18 @@
 		<!-- Main JS -->
 		<script src="/js/main.js"></script>
 
-		<!-- RECAPTCHA -->
-		<script src="https://www.google.com/recaptcha/api.js"></script>
-		<script>
-			function onSubmit(token) {
-				document.getElementById("demo-form").submit();
-			}
-		</script>
+		<!-- Main JS -->
+		<%if(path=== "/account" ){%>
+			<script src="/js/custom.js"></script>
+			<%}%>
+
+				<!-- RECAPTCHA -->
+				<script src="https://www.google.com/recaptcha/api.js"></script>
+				<script>
+					function onSubmit(token) {
+						document.getElementById("demo-form").submit();
+					}
+				</script>
 
 </body>
 

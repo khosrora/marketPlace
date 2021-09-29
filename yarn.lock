@@ -1632,6 +1632,11 @@
   "resolved" "https://registry.npmjs.org/nanoclone/-/nanoclone-0.2.1.tgz"
   "version" "0.2.1"
 
+"nanoid@^2.1.0":
+  "integrity" "sha512-s/snB+WGm6uwi0WjsZdaVcuf3KJXlfGl2LcxgwkEwJF0D/BWzVWAZW/XY4bFaiR7s0Jk3FPvlnepg1H1b1UwlA=="
+  "resolved" "https://registry.npmjs.org/nanoid/-/nanoid-2.1.11.tgz"
+  "version" "2.1.11"
+
 "napi-build-utils@^1.0.1":
   "integrity" "sha512-ONmRUqK7zj7DWX0D9ADe03wbwOBZxNAfF20PlGfCWQcD3+/MakShIHrMqx9YwPTfxDdF1zLeL+RGZiR9kGMLdg=="
   "resolved" "https://registry.npmjs.org/napi-build-utils/-/napi-build-utils-1.0.2.tgz"
@@ -2182,6 +2187,13 @@
     "simple-get" "^3.1.0"
     "tar-fs" "^2.1.1"
     "tunnel-agent" "^0.6.0"
+
+"shortid@^2.2.16":
+  "integrity" "sha512-Ugt+GIZqvGXCIItnsL+lvFJOiN7RYqlGy7QE41O3YC1xbNSeDGIRO7xg2JJXIAj1cAGnOeC1r7/T9pgrtQbv4g=="
+  "resolved" "https://registry.npmjs.org/shortid/-/shortid-2.2.16.tgz"
+  "version" "2.2.16"
+  dependencies:
+    "nanoid" "^2.1.0"
 
 "sift@13.5.2":
   "integrity" "sha512-+gxdEOMA2J+AI+fVsCqeNn7Tgx3M9ZN9jdi95939l1IJ8cZsqS8sqpJyOkic2SJk+1+98Uwryt/gL6XDaV+UZA=="

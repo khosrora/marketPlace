@@ -1,0 +1,51 @@
+<!--contact area start-->
+<div class="contact_area my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="contact_message content">
+                    <h3>تماس با ما</h3>
+                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                        چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی
+                        مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی</p>
+                    <ul>
+                        <li><i class="fa fa-fw fa-map-marker"></i> زاهدان چهارراه آبرسان، فلکه دانشگاه، برج بلور، طبقه
+                            678، واحد 85</li>
+                        <li><i class="fa fa-fw fa-phone"></i> <span class="ltr-text">+(98) 123 456 789</span> ، <span
+                                class="ltr-text">+(98) 123 456 789</span></li>
+                        <li><i class="fa fa-fw fa-envelope-o"></i> <a href="#">khosrora153333@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="contact_message form">
+                    <h3>با ما در میان بگذارید</h3>
+                    <%- include("../../includes/errors") %>
+                        <%- include("../../includes/message") %>
+                            <form method="POST" action="/contactUs">
+                                <p>
+                                    <label> نام شما (الزامی)</label>
+                                    <input name="fullname" placeholder="نام *" type="text">
+                                </p>
+                                <p>
+                                    <label> ایمیل شما (الزامی)</label>
+                                    <input name="email" placeholder="* ایمیل" type="email" dir="ltr">
+                                </p>
+                                <p>
+                                    <label> موضوع</label>
+                                    <input name="subject" placeholder="موضوع" type="text">
+                                </p>
+                                <div class="contact_textarea">
+                                    <label> پیام شما</label>
+                                    <textarea placeholder="پیام *" name="text" class="form-control2"></textarea>
+                                </div>
+                                <button type="submit"> ارسال</button>
+                            </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--contact area end-->
