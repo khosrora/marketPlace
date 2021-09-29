@@ -1,0 +1,38 @@
+<%- include("./includeBreadCrumb")%>
+    <!-- my account start  -->
+    <section class="main_content_area">
+        <div class="container">
+            <div class="account_dashboard">
+                <div class="row">
+                    <div class="col-sm-12 col-md-3 col-lg-3">
+                        <!-- Nav tabs -->
+                        <%- include("./includeMenu")%>
+                    </div>
+                    <div class="col-sm-12 col-md-9 col-lg-9">
+                        <!-- Tab panes -->
+
+                        <div>
+                            <p>آدرس های زیر به صورت پیش فرض در صفحه سفارش شما استفاده خواهند شد.</p>
+                            <h4 class="billing-address">آدرس صورت حساب</h4>
+                            <% if(!user.address){%>
+                                <a href="/user/editUser">
+                                    <p class="text-danger">لطفا آدرس را از بخش ویرایش حساب وارد کنید</p>
+                                </a>
+                                <%}else{%>
+                                    <p><strong>
+                                            <%= user.firstName %>
+                                                <%= user.lastName %>
+                                        </strong></p>
+                                    <address>
+                                        <%= user.address %>
+                                    </address>
+                                    <%}%>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- my account end   -->

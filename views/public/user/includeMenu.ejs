@@ -1,0 +1,13 @@
+<div class="dashboard_tab_button">
+    <ul role="tablist" class="nav flex-column dashboard-list">
+        <li><a href="/user/myaccount" class="nav-link active">داشبورد</a></li>
+        <li><a href="/user/tiketsUser" class="nav-link">پیام های شما</a></li>
+        <li><a href="/user/addressuser" class="nav-link">آدرس ها</a></li>
+        <li><a href="/user/edituser" class="nav-link">ویرایش حساب</a></li>
+        <li><a href="/user/createTiket" class="nav-link">ارسال پیام</a></li>
+        <% if(user.isSeller==false){%>
+            <li><a href="/user/requestStore" class="nav-link">درخواست فروشندگی</a></li>
+            <%}%>
+                <li><a href="/auth/logout" class="nav-link">خروج</a></li>
+    </ul>
+</div>

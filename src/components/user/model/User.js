@@ -16,6 +16,7 @@ const userSchema = new Schema({
     lastName: { type: String, trim: true, required: true },
     address: { type: String, required: false },
     isBloocked: { type: Boolean, default: false },
+    isSeller: { type: Boolean, default: false },
 }, { timestamps: true })
 
 
