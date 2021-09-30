@@ -1,0 +1,74 @@
+<%- include("../includeMenuBar")%>
+    <div class="col-xs-12 " style="margin-top: 10rem;">
+        <div class="well with-header with-footer">
+            <div class="header bordered-success">
+                جدول درخواست های فروشندگی
+            </div>
+            <div class="table-scrollable">
+                <% if(sellers.length> 0){%>
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    شناسه
+                                </th>
+                                <th scope="col">
+                                    نام فروشگاه
+                                </th>
+                                <th scope="col">
+                                    شماره همراه
+                                </th>
+                                <th scope="col">
+                                    وضعیت
+                                </th>
+                                <th scope="col">
+                                    عملیات
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%for (seller of sellers) {%>
+                                <tr>
+                                    <td>
+                                        <%= seller.code %>
+                                    </td>
+                                    <td>
+                                        <%= seller.storeName %>
+                                    </td>
+                                    <td>
+                                        <%= seller.storeMobile %>
+                                    </td>
+                                    <td>
+                                        <%if(seller.isActive){%>
+                                            <span class="badge bg-success">فروشگاه فعال</span>
+                                            <%}else{%>
+                                                <span class="badge bg-danger">فروشگاه غیر فعال</span>
+                                                <%}%>
+                                    </td>
+                                    <td>
+                                        <%if(seller.isActive){%>
+                                            <a href="/admin/deActveSellers/<%= seller._id %>"><span class="badge bg-danger">
+                                                    لغو فعالیت</span></a>
+                                            <%}else{%>
+                                                <a href="/admin/activeSellers/<%= seller._id %>"> <span
+                                                        class="badge bg-success">تایید فعالیت</span></a>
+                                                <%}%>
+                                                <a href="/admin/sellerDetails/<%= seller._id %>"> <span
+                                                    class="badge bg-warning">مشاهده </span></a>
+                                    </td>
+                                </tr>
+                                <%}%>
+                        </tbody>
+                    </table>
+                    <%}else {%>
+                        <div class="">
+                            <h4>درخواستی ثبت نشده است</h4>
+                        </div>
+                        <%}%>
+            </div>
+            <div class="footer">
+            </div>
+        </div>
+
+    </div>
+    </div>

@@ -1,6 +1,6 @@
 const User = require('./model/User');
 const Tiket = require('./model/Tiket');
-const Seller = require('../store/model/Seller');
+const Seller = require('../admin/store/model/Seller');
 
 
 
