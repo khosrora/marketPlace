@@ -7,7 +7,7 @@ exports.home = async (req, res) => {
         res.render('public/pages/index.ejs', {
             title: "صفحه اصلی",
             path: '/',
-            auth
+            auth,
         })
 
     } catch (err) {

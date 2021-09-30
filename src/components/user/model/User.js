@@ -17,6 +17,7 @@ const userSchema = new Schema({
     address: { type: String, required: false },
     isBloocked: { type: Boolean, default: false },
     isSeller: { type: Boolean, default: false },
+    role: { type: String, enum: ["User", "Admin"], default: "User" }
 }, { timestamps: true })
 
 
