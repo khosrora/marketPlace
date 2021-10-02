@@ -1,0 +1,43 @@
+<%- include("../includeMenuBar")%>
+
+    <div class="col-xs-12" style="margin-top: 10rem;">
+        <div class="widget flat radius-bordered">
+            <div class="widget-header bg-danger">
+                <span class="widget-caption">ساخت دسته بندی</span>
+            </div>
+            <div class="widget-body">
+                <div id="registration-form">
+                    <form role="form" action="/admin/createCategoryItem" method="POST">
+                        <div class="form-title">
+                            <%- include("../../includes/message") %>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="category">نام دسته بندی </label>
+                                    <span class="input-icon icon-right">
+                                        <input type="text" class="form-control" name="name" id="category"
+                                            placeholder="مثال : لباس ها">
+                                        <i class="fa fa-table blue"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <h6>برچسب ها</h6>
+                                <select id="e2" multiple="multiple" style="width: 100%;" name="tags">
+                                    <% for (tag of tags){%>
+                                        <option value="<%= tag.name %>">
+                                            <%= tag.name %>
+                                        </option>
+                                        <%}%>
+                                </select>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-danger">ایجاد دسته بندی</button>
+            </form>
+        </div>
+    </div>
+    </div>
+    </div>

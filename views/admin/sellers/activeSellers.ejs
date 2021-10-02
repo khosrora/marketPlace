@@ -47,14 +47,44 @@
                                     </td>
                                     <td>
                                         <%if(seller.isActive){%>
-                                            <a href="/admin/deActveSellers/<%= seller._id %>"><span class="badge bg-danger">
-                                                    لغو فعالیت</span></a>
+                                            <span class="badge bg-danger" data-toggle="modal"
+                                                data-target=".bs-example-modal-lg" style="cursor: pointer;">
+                                                لغو فعالیت</span>
+                                            <!--LArge Modal Templates-->
+                                            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
+                                                aria-labelledby="myLargeModalLabel" aria-hidden="true"
+                                                style="display: none;">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-hidden="true">×</button>
+                                                            <h4 class="modal-title" id="myLargeModalLabel">
+                                                                علت رد درخواست
+                                                            </h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="/admin/deActveSellers/<%= seller._id %>"
+                                                                method="POST">
+                                                                <input type="hidden" value="<%= seller._id %>"
+                                                                    name="seller">
+                                                                <textarea class="form-control" rows="3"
+                                                                    placeholder="علت رد درخواست" name="text"></textarea>
+                                                                <button type="submit" class="btn btn-danger"
+                                                                    style="margin-top: 1rem;">لغو و ارسال
+                                                                    پیام</button>
+                                                            </form>
+                                                        </div>
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
+                                            </div>
+                                            <!--End Large Modal Templates-->
                                             <%}else{%>
                                                 <a href="/admin/activeSellers/<%= seller._id %>"> <span
                                                         class="badge bg-success">تایید فعالیت</span></a>
                                                 <%}%>
-                                                <a href="/admin/sellerDetails/<%= seller._id %>"> <span
-                                                    class="badge bg-warning">مشاهده </span></a>
+                                                    <a href="/admin/sellerDetails/<%= seller._id %>"> <span
+                                                            class="badge bg-warning">مشاهده </span></a>
                                     </td>
                                 </tr>
                                 <%}%>

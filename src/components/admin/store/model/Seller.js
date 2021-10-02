@@ -14,7 +14,7 @@ const sellerSchema = new Schema({
     storeAdminDesc: { type: String, required: true },
     isActive: { type: Boolean, default: false },
     code: { type: Number, required: true },
-
+    isShow: { type: Boolean, default: true },
 }, { timestamps: true })
 
 sellerSchema.statics.sellerValidate = function (body) {

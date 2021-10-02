@@ -32,7 +32,7 @@ router.get("/deActveSellers", auth, sellerController.getDeActiveSellers)
 // ? desc ==>  Deactive seller
 // ? method ==> get
 // ? ADMIN
-router.get("/deActveSellers/:id", auth, sellerController.DeActiveSellers)
+router.post("/deActveSellers/:id", auth, sellerController.DeActiveSellers)
 
 // ? desc ==>  detail seller
 // ? method ==> get

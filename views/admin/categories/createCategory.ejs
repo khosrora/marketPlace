@@ -1,0 +1,41 @@
+<%- include("../includeMenuBar")%>
+
+    <div class="col-xs-12" style="margin-top: 10rem;">
+        <div class="widget flat radius-bordered">
+            <div class="widget-header bg-danger">
+                <span class="widget-caption">ساخت دسته بندی</span>
+            </div>
+            <div class="widget-body">
+                <div id="registration-form">
+                    <form role="form" action="createCategory" method="POST">
+                        <div class="form-title">
+                            <%- include("../../includes/message") %>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="category">نام دسته بندی اصلی</label>
+                                    <span class="input-icon icon-right">
+                                        <input type="text" class="form-control" name="name" id="category"
+                                            placeholder="مثال : پوشاک">
+                                        <i class="fa fa-table blue"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <h6>دسته بندی دوم</h6>
+                                <select id="e2" multiple="multiple" style="width: 100%;" name="categoryItemId">
+                                    <% for (item of ctegoryItems){%>
+                                        <option value="<%= item._id %>">
+                                            <%= item.name %>
+                                        </option>
+                                        <%}%>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-danger">ایجاد دسته بندی</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

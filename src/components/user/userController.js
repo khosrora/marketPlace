@@ -1,7 +1,7 @@
 const User = require('./model/User');
 const Tiket = require('./model/Tiket');
 const Seller = require('../admin/store/model/Seller');
-
+const Category = require('../admin/categories/model/category');
 
 
 const sharp = require('sharp');
@@ -20,6 +20,8 @@ exports.getAccountPage = async (req, res) => {
         // ! get User && tikets
         const user = req.user;
 
+        const categories = await Category.find();
+
         res.render("public/user/dashboard", {
             title: "پنل کاربری",
             breadCrumb: "پنل کاربری",
@@ -27,6 +29,7 @@ exports.getAccountPage = async (req, res) => {
             auth,
             message: req.flash("success_msg"),
             user,
+            categories,
             jalaliMoment
         })
     } catch (err) {
@@ -40,6 +43,8 @@ exports.getEditUser = async (req, res) => {
     try {
         // ! get User && tikets
         const user = req.user;
+        const categories = await Category.find();
+
         res.render("public/user/editUser", {
             title: "ویرایش حساب کاربری",
             breadCrumb: "ویرایش حساب کاربری",
@@ -47,6 +52,7 @@ exports.getEditUser = async (req, res) => {
             auth,
             message: req.flash("success_msg"),
             user,
+            categories,
             jalaliMoment
         })
     } catch (err) {
@@ -93,6 +99,7 @@ exports.getTiketsUser = async (req, res) => {
         // ! get User && tikets
         const user = req.user;
         const tikets = await Tiket.find({ user: user.id })
+        const categories = await Category.find();
 
         res.render("public/user/tikets", {
             title: "پیام های شما",
@@ -101,6 +108,7 @@ exports.getTiketsUser = async (req, res) => {
             auth,
             message: req.flash("success_msg"),
             user,
+            categories,
             tikets,
             jalaliMoment
         })
@@ -112,9 +120,13 @@ exports.getTiketsUser = async (req, res) => {
 // ? desc ==> address user
 // ? method ==> get
 exports.getAddressUser = async (req, res) => {
+
     try {
+
         // ! get User && tikets
         const user = req.user;
+        const categories = await Category.find();
+
         res.render("public/user/address", {
             title: "آدرس کاربر",
             breadCrumb: "آدرس کاربر",
@@ -122,6 +134,7 @@ exports.getAddressUser = async (req, res) => {
             auth,
             message: req.flash("success_msg"),
             user,
+            categories
         })
     } catch (err) {
         console.log(err.message);
@@ -134,6 +147,8 @@ exports.getCreateTiket = async (req, res) => {
     try {
         // ! get User && tikets
         const user = req.user;
+        const categories = await Category.find();
+
         res.render("public/user/createTiket", {
             title: "ارسال پیام",
             breadCrumb: "ارسال پیام",
@@ -141,6 +156,7 @@ exports.getCreateTiket = async (req, res) => {
             auth,
             message: req.flash("success_msg"),
             user,
+            categories
         })
     } catch (err) {
         console.log(err.message);
@@ -178,6 +194,8 @@ exports.getRequestStore = async (req, res) => {
     try {
         // ! get User && tikets
         const user = req.user;
+        const categories = await Category.find();
+
         res.render("public/user/requestStore", {
             title: "تقاضای فروشندگی",
             breadCrumb: "فرم تقاضای فروشندگی",
@@ -185,6 +203,7 @@ exports.getRequestStore = async (req, res) => {
             auth,
             message: req.flash("success_msg"),
             user,
+            categories
         })
     } catch (err) {
         console.log(err.message);
@@ -208,9 +227,9 @@ exports.requestStore = async (req, res) => {
 
         // ! create store
         Seller.create({
-            ...req.body, user: user.id , code : createId()
+            ...req.body, user: user.id, code: createId()
         })
-        // ! user edti
+        // ! user edit
         user.isSeller = true;
         await user.save();
         // ! send message
