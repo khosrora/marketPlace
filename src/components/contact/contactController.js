@@ -1,9 +1,10 @@
 const Contact = require('./model/Contact');
-
+const Category = require('../admin/categories/model/category');
 
 
 exports.contactUs = async (req, res) => {
     const errors = [];
+    const categories = await Category.find();
     try {
         // !get items
         const { subject, email, text, fullname } = req.body;
@@ -20,6 +21,7 @@ exports.contactUs = async (req, res) => {
             path: "/contactUs",
             auth,
             errors,
+            categories,
             message: req.flash("success_msg")
         })
 
@@ -33,6 +35,7 @@ exports.contactUs = async (req, res) => {
             path: "/contactUs",
             auth,
             errors,
+            categories,
             message: req.flash("success_msg")
         })
     }

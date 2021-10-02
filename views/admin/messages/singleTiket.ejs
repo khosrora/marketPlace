@@ -1,0 +1,76 @@
+<%- include("../includeMenuBar")%>
+
+
+
+    <div class="page-content">
+
+        <div class="page-header position-relative">
+            <div class="header-title">
+                <h1>
+                    جزئیات پیام
+                </h1>
+            </div>
+            <!--Header Buttons-->
+            <div class="header-buttons">
+                <a class="sidebar-toggler" href="#">
+                    <i class="fa fa-arrows-h"></i>
+                </a>
+                <a class="refresh" id="refresh-toggler" href="">
+                    <i class="glyphicon glyphicon-refresh"></i>
+                </a>
+                <a class="fullscreen" id="fullscreen-toggler" href="#">
+                    <i class="glyphicon glyphicon-fullscreen"></i>
+                </a>
+            </div>
+            <!--Header Buttons End-->
+        </div>
+        <!-- /Page Header -->
+        <!-- Page Body -->
+        <div class="page-body">
+            <div class="row">
+                <div class="col">
+                    <div class="well invoice-container">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <ul>
+                                            <li>
+                                                <%= tiket.title %>
+                                            </li>
+                                            <li>
+                                                <%= tiket.user.email %>
+                                            </li>
+                                            <li>
+                                                <%= tiket.user.firstName %>
+                                                    <%= tiket.user.lastName %>
+                                            </li>
+                                            <li>
+                                                <%= jalaliMoment(tiket.createdAt) %>
+                                            </li>
+                                            <li>
+                                                <% if(tiket.isRead){%>
+                                                    قبلا مشاهده شده
+                                                    <%}else{%>
+                                                        <a href="/admin/seeTiket/<%= tiket._id %>"
+                                                            class="btn btn-success">
+                                                            مشاهده شد
+                                                        </a>
+                                                        <%}%>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="wide" />
+                        <div class="invoice-notes">
+                            <%= tiket.text %>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Body -->
+    </div>

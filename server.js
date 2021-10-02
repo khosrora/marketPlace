@@ -68,6 +68,7 @@ app.use("/user", require('./src/components/user/userRouter'))
 app.use("/admin", require('./src/components/admin/public/adminRouter'))
 app.use("/admin", require('./src/components/admin/store/sellerRouter'))
 app.use("/admin", require('./src/components/admin/categories/categoriesRouter'))
+app.use("/admin", require('./src/components/admin/messages/messagesRouter'))
 
 
 // !404Page
