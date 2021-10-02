@@ -3,6 +3,8 @@ const Token = require('../user/model/Token');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 
+const Category = require('../admin/categories/model/category');
+
 // !helper
 const { createId } = require('../../helper/nonoId');
 
@@ -11,10 +13,14 @@ const { createId } = require('../../helper/nonoId');
 // ? method ==> get
 exports.getRegisterUser = async (req, res) => {
     try {
+
+        const categories = await Category.find();
+
         res.render('public/auth/register', {
             title: "ثبت نام",
             path: "/register",
             crumb: "ثبت نام کاربر",
+            categories,
             auth,
         })
     } catch (err) {
@@ -26,6 +32,8 @@ exports.getRegisterUser = async (req, res) => {
 // ? method ==> post
 exports.RegisterUser = async (req, res) => {
     const errors = [];
+    const categories = await Category.find();
+
     try {
         // !get Items 
         const { firstName, lastName, email, mobile, password } = req.body;
@@ -42,6 +50,7 @@ exports.RegisterUser = async (req, res) => {
                 crumb: "ثبت نام کاربر",
                 path: "/register",
                 auth,
+                categories,
                 errors
             })
         }
@@ -72,6 +81,7 @@ exports.RegisterUser = async (req, res) => {
             path: "/register",
             crumb: "ثبت نام کاربر",
             auth,
+            categories,
             errors
         })
     }
@@ -82,11 +92,14 @@ exports.RegisterUser = async (req, res) => {
 // ? method ==> get
 exports.getActiveAccount = async (req, res) => {
     try {
+        const categories = await Category.find();
+
         res.render('public/auth/activeAccount', {
             title: "فعال سازی کاربر",
             path: "/activeAccount",
             crumb: "فعال سازی کاربر",
             auth,
+            categories,
             message: req.flash("success_msg"),
             error: req.flash("error"),
         })
@@ -100,6 +113,8 @@ exports.getActiveAccount = async (req, res) => {
 // ? method ==> post
 exports.ActiveAccount = async (req, res) => {
     const alerts = [];
+    const categories = await Category.find();
+
     try {
         // ! get items
         const { mobile, code } = req.body;
@@ -114,6 +129,7 @@ exports.ActiveAccount = async (req, res) => {
                 path: "/activeAccount",
                 crumb: "فعال سازی کاربر",
                 auth,
+                categories,
                 message: req.flash("success_msg"),
                 error: req.flash("error"),
                 alerts,
@@ -135,6 +151,7 @@ exports.ActiveAccount = async (req, res) => {
                 path: "/activeAccount",
                 crumb: "فعال سازی کاربر",
                 auth,
+                categories,
                 message: req.flash("success_msg"),
                 error: req.flash("error"),
                 alerts,
@@ -149,11 +166,14 @@ exports.ActiveAccount = async (req, res) => {
 // ? method ==> get
 exports.getLoginUser = async (req, res) => {
     try {
+        const categories = await Category.find();
+
         res.render('public/auth/login', {
             title: "ورود کاربر",
             path: "/login",
             crumb: "ورود کاربر",
             auth,
+            categories,
             message: req.flash("success_msg"),
             error: req.flash("error"),
         })
@@ -166,6 +186,8 @@ exports.getLoginUser = async (req, res) => {
 // ? method ==> post
 exports.LoginUser = async (req, res, next) => {
     const errors = [];
+    const categories = await Category.find();
+
     try {
         // !get items
         const { mobile, password, remember } = req.body;
@@ -179,6 +201,7 @@ exports.LoginUser = async (req, res, next) => {
                 path: "/login",
                 crumb: "ثبت نام کاربر",
                 auth,
+                categories,
                 errors,
                 message: req.flash("success_msg"),
                 error: req.flash("error"),
@@ -198,6 +221,7 @@ exports.LoginUser = async (req, res, next) => {
                     path: "/login",
                     crumb: "ثبت نام کاربر",
                     auth,
+                    categories,
                     errors,
                     message: req.flash("success_msg"),
                     error: req.flash("success_msg")
@@ -228,10 +252,13 @@ exports.LoginUser = async (req, res, next) => {
 // ? method ==> get
 exports.getForgotPassword = async (req, res) => {
     try {
+        const categories = await Category.find();
+
         res.render('public/auth/forgotpass', {
             title: "فراموشی رمز عبور",
             path: "/forgotpass",
             crumb: "فراموشی رمز عبور",
+            categories,
             auth,
         })
     } catch (err) {
@@ -243,6 +270,8 @@ exports.getForgotPassword = async (req, res) => {
 // ? method ==> post
 exports.forgotPassword = async (req, res) => {
     const alerts = [];
+    const categories = await Category.find();
+
     try {
         //! get Items
         const { mobile } = req.body;
@@ -257,6 +286,7 @@ exports.forgotPassword = async (req, res) => {
                 path: "/forgotpass",
                 crumb: "فراموشی رمز عبور",
                 auth,
+                categories,
                 alerts
             })
         }
@@ -279,11 +309,14 @@ exports.forgotPassword = async (req, res) => {
 // ? method ==> get 
 exports.getResetPassword = async (req, res) => {
     try {
+        const categories = await Category.find();
+
         res.render('public/auth/resetpass', {
             title: "بازیابی رمز عبور",
             path: "/resetpass",
             crumb: "بازیابی رمز عبور",
             auth,
+            categories,
             message: req.flash("success_msg")
         })
     } catch (err) {
@@ -295,6 +328,8 @@ exports.getResetPassword = async (req, res) => {
 // ? method ==> post 
 exports.resetPassword = async (req, res) => {
     const alerts = [];
+    const categories = await Category.find();
+
     try {
         // !get items
         const { mobile, token, password } = req.body;
@@ -310,6 +345,7 @@ exports.resetPassword = async (req, res) => {
                 path: "/resetpass",
                 crumb: "بازیابی رمز عبور",
                 auth,
+                categories,
                 alerts
             })
         }
@@ -326,6 +362,7 @@ exports.resetPassword = async (req, res) => {
                 crumb: "بازیابی رمز عبور",
                 alerts,
                 auth,
+                categories,
                 message: req.flash("success_msg")
             })
         }
@@ -354,11 +391,14 @@ exports.resetPassword = async (req, res) => {
 // ? method ==> get 
 exports.getSendCode = async (req, res) => {
     try {
+        const categories = await Category.find();
+
         res.render('public/auth/sendCode', {
             title: "ارسال کد",
             path: "/sendCode",
             crumb: "ارسال کد فعال سازی",
             auth,
+            categories,
             message: req.flash("success_msg")
         })
     } catch (err) {
@@ -370,6 +410,7 @@ exports.getSendCode = async (req, res) => {
 // ? method ==> post
 exports.sendCode = async (req, res) => {
     const alerts = [];
+    const categories = await Category.find();
     try {
         // ! get items
         const { mobile } = req.body;
@@ -384,6 +425,7 @@ exports.sendCode = async (req, res) => {
                 path: "/sendCode",
                 crumb: "ارسال کد فعال سازی",
                 auth,
+                categories,
                 message: req.flash("success_msg"),
                 alerts
             })

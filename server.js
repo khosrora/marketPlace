@@ -71,13 +71,7 @@ app.use("/admin", require('./src/components/admin/categories/categoriesRouter'))
 
 
 // !404Page
-const { auth } = require('./src/middleware/isLogged');
-app.use("*", (req, res) => {
-    res.render('public/pages/404.ejs', {
-        title: "صفحه 404",
-        auth,
-    })
-})
+app.use("*", require('./src/components/public/404Router'))
 
 
 // !server RUN
