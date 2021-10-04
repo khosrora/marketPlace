@@ -6,16 +6,14 @@ const productSchema = new Schema({
     title: { type: String, required: true },
     slug: { type: String, required: true },
     price: { type: Number, required: true },
-    disCountPrice: { type: Number, required: false },
-    offer: { type: Boolean, default: false },
-    Desc: { type: String, required: true },
-    Technical: { type: String, required: true },
-    Review: { type: String, required: true },
-    colors: [{ type: String, required: false }],
+    offer: { type: String, default: "On" },
+    desc: { type: String, required: true },
+    technical: { type: String, required: true },
     image: [{ type: String, required: true }],
     isActive: { type: Boolean, default: true },
     isAccept: { type: Boolean, default: false },
-    productCategory: { type: Schema.Types.ObjectId, ref: "Category" },
+    code: { type: Number, required: true },
+    // productCategory: [{ type: Schema.Types.ObjectId, ref: "Category" }],
     seller: { type: Schema.Types.ObjectId, ref: "User" }
 }, { timestamps: true })
 

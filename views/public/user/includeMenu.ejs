@@ -7,7 +7,9 @@
         <li><a href="/user/createTiket" class="nav-link">ارسال پیام</a></li>
         <% if(user.isSeller==false){%>
             <li><a href="/user/requestStore" class="nav-link">درخواست فروشندگی</a></li>
-            <%}%>
-                <li><a href="/auth/logout" class="nav-link">خروج</a></li>
+            <%}else{%>
+            <li><a href="/seller" class="nav-link">داشبورد مدیریت فروشگاه</a></li>
+                <%}%>
+                    <li><a href="/auth/logout" class="nav-link">خروج</a></li>
     </ul>
 </div>

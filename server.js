@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
-const fileUpload = require('express-fileupload');
+// const fileUpload = require('express-fileupload');
 
 
 
@@ -33,7 +33,7 @@ app.use(express.json());
 app.use(flash());
 
 // !file Upload
-app.use(fileUpload());
+// app.use(fileUpload());
 
 // ! session
 app.use(session({
@@ -69,6 +69,9 @@ app.use("/admin", require('./src/components/admin/public/adminRouter'))
 app.use("/admin", require('./src/components/admin/store/sellerRouter'))
 app.use("/admin", require('./src/components/admin/categories/categoriesRouter'))
 app.use("/admin", require('./src/components/admin/messages/messagesRouter'))
+
+// ! seller
+app.use("/seller", require('./src/components/seller/productsRouter'))
 
 
 // !404Page
