@@ -50,7 +50,6 @@ exports.getCreateProduct = async (req, res) => {
 
         const user = req.user;
         const categories = await Category.find();
-        console.log(categories);
 
         res.render("seller/createproduct", {
             title: "پنل فروشندگی",
@@ -102,7 +101,6 @@ exports.createProduct = async (req, res, next) => {
         }
         // ! get items
         req.body = { ...req.body }
-        console.log(req.body);
         // !validation
         await Product.productValidate(req.body)
         // ! create product

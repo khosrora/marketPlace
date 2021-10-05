@@ -21,6 +21,14 @@ router.get("/contactUs", auth, userController.contactUs)
 // ? method ==> get 
 router.get("/aboutUs", auth, userController.aboutUs)
 
+// ? desc ==> all products page
+// ? method ==> get 
+router.get("/allProducts", auth, userController.getAllProducts)
+
+// ? desc ==>  product page
+// ? method ==> get 
+router.get("/product/:slug", auth, userController.getProduct)
+
 
 
 

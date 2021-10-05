@@ -23,6 +23,7 @@
                                                     <th class="product_name">محصول</th>
                                                     <th class="product-price">تاریخ</th>
                                                     <th class="product_total">قیمت</th>
+                                                    <th class="product_total">مشاهده</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -34,7 +35,7 @@
                                                             <a href="/seller/editProduct/<%= product._id %>">
                                                                 <i class="fa fa-edit"></i>
                                                             </a>
-                                                            <a href="">
+                                                            <a href="/product/<%= product.slug %>">
                                                                 <i class="fa fa-eye"></i>
                                                             </a>
 
@@ -64,6 +65,9 @@
                                                         </td>
                                                         <td class="product_total">
                                                             <%= product.price %> تومان
+                                                        </td>
+                                                        <td class="product_total">
+                                                            <%= product.view %> بار
                                                         </td>
                                                     </tr>
                                                     <%}%>
