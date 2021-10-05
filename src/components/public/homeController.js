@@ -1,9 +1,11 @@
 const Category = require('../admin/categories/model/category');
 const Product = require('../seller/model/Product');
+const Comment = require('../user/model/comment');
 
 
 // ! helper
 const { truncate } = require('../../helper/truncate');
+const { jalaliMoment } = require('../../helper/jalali');
 
 // ? desc ==> home page
 // ? method ==> get 
@@ -92,11 +94,13 @@ exports.getProduct = async (req, res) => {
     try {
 
         // ! get items
+        const user = req.user;
         const categories = await Category.find();
         const product = await Product.findOne({ slug: req.params.slug });
         product.view = product.view + 1;
         await product.save();
         const category = await Category.findOne({ _id: product.productCategory });
+        const comments = await Comment.find({ product: product._id }).populate("user").sort({ createdAt: -1 });
 
         res.render('public/pages/product.ejs', {
             title: "محصولات",
@@ -105,7 +109,11 @@ exports.getProduct = async (req, res) => {
             auth,
             product,
             truncate,
-            category
+            category,
+            user,
+            comments,
+            jalaliMoment,
+            message: req.flash("success_msg")
         })
     } catch (err) {
         console.log(err.message);

@@ -48,6 +48,10 @@ router.get("/requestStore", auth, userController.getRequestStore)
 // ? method ==> post
 router.post("/requestStore", auth, userController.requestStore)
 
+// ? desc ==> comment User
+// ? method ==> post
+router.post("/comment", auth, userController.comment)
+
 
 
 

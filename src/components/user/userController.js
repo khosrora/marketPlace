@@ -2,12 +2,10 @@ const User = require('./model/User');
 const Tiket = require('./model/Tiket');
 const Seller = require('../admin/store/model/Seller');
 const Category = require('../admin/categories/model/category');
+const Comment = require('./model/comment');
+const Product = require('../seller/model/Product');
 
 
-const sharp = require('sharp');
-const mkdirp = require('mkdirp')
-const shortId = require('shortid');
-const appRoot = require('app-root-path');
 
 // * helper
 const { jalaliMoment } = require('../../helper/jalali');
@@ -242,5 +240,30 @@ exports.requestStore = async (req, res) => {
             user,
             errors
         })
+    }
+}
+
+exports.comment = async (req, res) => {
+    try {
+        // !get items 
+        const { text, productId } = req.body;
+        const product = await Product.findOne({ _id: productId })
+        const user = req.user;
+
+        // ! validation
+        if (!text) {
+            req.flash("success_msg", "لطفا نظر خود را بنویسید");
+            return res.redirect(`/product/${product.slug}`);
+        }
+        // ! create comment
+        await Comment.create({
+            text, user: user._id, product: productId
+        })
+
+        req.flash("success_msg", "پیام شما ارسال شد");
+        return res.redirect(`/product/${product.slug}`);
+
+    } catch (err) {
+        console.log(err.message);
     }
 }
