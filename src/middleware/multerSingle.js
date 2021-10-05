@@ -12,7 +12,6 @@ var storage = multer.diskStorage({
     }
 })
 
-var upload = multer({ storage: storage })
-exports.uploadMultiple = upload.fields([{ name: 'image', maxCount: 10 }])
+exports.upload = multer({ storage: storage })
 
 // !

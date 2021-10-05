@@ -8,7 +8,6 @@ const userSchema = new Schema({
     mobile: { type: String, trim: true, unique: true, required: true },
     mobileActiveCode: { type: Number, required: true },
     isMobileActive: { type: Boolean, default: false },
-    avatar: { type: String, required: false },
     offers: { type: Number, default: 0 },
     Newsletters: { type: Number, default: 0 },
     password: { type: String, trim: true, required: true },

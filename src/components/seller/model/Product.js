@@ -13,7 +13,8 @@ const productSchema = new Schema({
     isActive: { type: Boolean, default: true },
     isAccept: { type: Boolean, default: false },
     code: { type: Number, required: true },
-    // productCategory: [{ type: Schema.Types.ObjectId, ref: "Category" }],
+    view: { type: Number, default: 0 },
+    productCategory: { type: Schema.Types.ObjectId, ref: "Category" },
     seller: { type: Schema.Types.ObjectId, ref: "User" }
 }, { timestamps: true })
 

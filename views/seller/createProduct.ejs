@@ -34,11 +34,24 @@
                                             <textarea name="technical" id="tinymce">
                                         </textarea>
                                         </p>
-                                        <div class="col">
-                                            <p>
-                                                <label>عکس <span>*</span></label>
-                                                <input type="file" name="image" multiple>
-                                            </p>
+                                        <div class="row">
+                                            <div class="col">
+                                                <label>دسته بندی : </label>
+                                                <br>
+                                                <select class="select_option" name="productCategory" id="short">
+                                                    <% for (category of categories){%>
+                                                        <option value="<%= category._id %>">
+                                                            <%= category.name %>
+                                                        </option>
+                                                        <%}%>
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <p>
+                                                    <label>عکس <span>*</span></label>
+                                                    <input type="file" name="image" multiple>
+                                                </p>
+                                            </div>
                                         </div>
                             </div>
                             <div class="login_submit">

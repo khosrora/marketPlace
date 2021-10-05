@@ -32,15 +32,15 @@ router.post("/createProduct", auth, isSeller, uploadMultiple, productsController
 
 // ? desc ==> delete product 
 // ? method ==> get 
-router.get("/deleteProduct/:id", auth, isSeller, uploadMultiple, productsController.deleteProduct)
+router.get("/deleteProduct/:id", auth, isSeller, productsController.deleteProduct)
 
 // ? desc ==> edit product 
 // ? method ==> get 
-router.get("/editProduct/:id", auth, isSeller, uploadMultiple, productsController.getEditProduct)
+router.get("/editProduct/:id", auth, isSeller, productsController.getEditProduct)
 
 // ? desc ==> edit product 
 // ? method ==> get 
-router.post("/editProduct", auth, isSeller, uploadMultiple, productsController.editProduct)
+router.post("/editProduct", auth, isSeller, productsController.editProduct)
 
 
 

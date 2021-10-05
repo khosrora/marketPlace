@@ -64,22 +64,15 @@ exports.getEditUser = async (req, res) => {
 // ? desc ==> edit User
 // ? method ==> post
 exports.editUser = async (req, res) => {
-    const avatar = req.files ? req.files.avatar : {};
-    const fileName = `${shortId.generate()}_${avatar.name}`;
-    const uploadPath = `${appRoot}/public/uploads/images/userprofile/`
     try {
         // !get items 
-        req.body = { ...req.body, avatar }
+        req.body = { ...req.body }
+        console.log(req.body);
         // ! get user
         const user = req.user;
-        // !create dir upload
-        await mkdirp(uploadPath)
-        // ! size image
-        await sharp(avatar.data).jpeg({ quality: 10 }).toFile(`${uploadPath}/${fileName}`)
-            .catch(err => console.log(err.message))
         // ! update user
         await User.findOneAndUpdate({ _id: user.id }, {
-            ...req.body, avatar: fileName
+            ...req.body
         })
         //! send message
         req.flash("success_msg", "مشخصات شما با موفقیت ویرایش شد")

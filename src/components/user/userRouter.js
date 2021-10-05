@@ -7,6 +7,8 @@ const userController = require('./userController');
 
 // *middleware
 const { auth } = require('../../middleware/isLogged');
+const { upload } = require('../../middleware/multerSingle');
+
 
 // * Routes
 // ? desc ==> dashboard user
