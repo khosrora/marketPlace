@@ -4,6 +4,7 @@ const Seller = require('../admin/store/model/Seller');
 const Category = require('../admin/categories/model/category');
 const Comment = require('./model/comment');
 const Product = require('../seller/model/Product');
+const Blog = require('../blog/model/Blog');
 
 
 
@@ -19,6 +20,7 @@ exports.getAccountPage = async (req, res) => {
         const user = req.user;
 
         const categories = await Category.find();
+        const blogs = await Blog.find({ user: user._id })
 
         res.render("public/user/dashboard", {
             title: "پنل کاربری",
@@ -28,6 +30,7 @@ exports.getAccountPage = async (req, res) => {
             message: req.flash("success_msg"),
             user,
             categories,
+            blog: blogs.length,
             jalaliMoment
         })
     } catch (err) {

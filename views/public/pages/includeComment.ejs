@@ -6,32 +6,34 @@
                 <p><a href="/auth/login">لطفا برای ارسال نقد و بررسی ابتدا وارد وب سایت شوید</a></p>
                 <%}%>
     </div>
-    <div class="product_review_form">
-        <form action="/user/comment" method="POST">
-            <input type="hidden" name="productId" value="<%= product._id %>">
-            <div class="row">
-                <div class="col-12">
-                    <label for="review_comment">نقد و بررسی شما </label>
-                    <textarea name="text" id="review_comment"></textarea>
+    <% if(user){%>
+        <div class="product_review_form">
+            <form action="/user/comment" method="POST">
+                <input type="hidden" name="productId" value="<%= product._id %>">
+                <div class="row">
+                    <div class="col-12">
+                        <label for="review_comment">نقد و بررسی شما </label>
+                        <textarea name="text" id="review_comment"></textarea>
+                    </div>
                 </div>
-            </div>
-            <button type="submit">ارسال نظر</button>
-        </form>
-    </div>
-    <% for (comment of comments) {%>
-        <div class="reviews_comment_box" style="margin-top: 3rem;">
-            <div class="comment_text">
-                <div class="reviews_meta">
-                    <p><strong>
-                            <%= comment.user.firstName %> <br>
-                        </strong>
-                        <%= jalaliMoment(comment.createdAt) %>
-                    </p>
-                </div>
-                <p>
-                    <%= comment.text %>
-                </p>
-            </div>
+                <button type="submit">ارسال نظر</button>
+            </form>
         </div>
         <%}%>
+            <% for (comment of comments) {%>
+                <div class="reviews_comment_box" style="margin-top: 3rem;">
+                    <div class="comment_text">
+                        <div class="reviews_meta">
+                            <p><strong>
+                                    <%= comment.user.firstName %> <br>
+                                </strong>
+                                <%= jalaliMoment(comment.createdAt) %>
+                            </p>
+                        </div>
+                        <p>
+                            <%= comment.text %>
+                        </p>
+                    </div>
+                </div>
+                <%}%>
 </div>

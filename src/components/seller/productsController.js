@@ -113,7 +113,7 @@ exports.createProduct = async (req, res, next) => {
     } catch (err) {
         console.log(err.message);
         for (let file of files) {
-            fs.unlinkSync(`${appRoot}/public/uploads/images/product/` + file);
+            fs.unlinkSync(`${appRoot}/public/uploads/images/` + file);
         }
         errors.push({
             message: err.message
@@ -141,7 +141,7 @@ exports.deleteProduct = async (req, res) => {
         // ! remove product image
         if (products) {
             for (let file of products.image) {
-                fs.unlinkSync(`${appRoot}/public/uploads/images/product/` + file);
+                fs.unlinkSync(`${appRoot}/public/uploads/images/` + file);
             }
         }
         await Product.findByIdAndDelete({ _id: req.params.id });
@@ -184,14 +184,11 @@ exports.editProduct = async (req, res) => {
     try {
         // ! get items
         req.body = { ...req.body }
-        console.log(req.body);
 
         // ! get product
         const product = await Product.findByIdAndUpdate({ _id: req.body.id }, {
             ...req.body
         })
-
-        console.log(product);
         //! redirect
         req.flash(`ویرایش محصول ${product.title} با موفقیت انجام شد`);
         res.redirect("/seller")

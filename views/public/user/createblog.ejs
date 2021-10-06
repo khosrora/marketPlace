@@ -1,0 +1,50 @@
+<%- include("./includeBreadCrumb")%>
+    <!-- my account start  -->
+    <section class="main_content_area">
+        <div class="container">
+            <div class="account_dashboard">
+                <div class="row">
+                    <div class="col-sm-12 col-md-3 col-lg-3">
+                        <!-- Nav tabs -->
+                        <%- include("./includeMenu")%>
+                    </div>
+                    <div class="col-sm-12 col-md-9 col-lg-9">
+                        <!-- Tab panes -->
+                        <div>
+                            <h3>درخواست پنل فروشندگی </h3>
+                            <%- include("../../includes/errors") %>
+                                <%- include("../../includes/message") %>
+                                    <div class="login">
+                                        <div class="login_form_container">
+                                            <div class="contact_message form">
+                                                <form action="/user/createBlog" method="POST"
+                                                    enctype="multipart/form-data">
+                                                    <label>عنوان</label>
+                                                    <input type="text" name="title">
+                                                    <label>عکس </label>
+                                                    <input type="file" name="image">
+                                                    <div class="contact_textarea">
+                                                        <label>توضیحات کوتاه</label>
+                                                        <textarea name="shortDesc" class="form-control2"></textarea>
+                                                    </div>
+                                                    <div class="contact_textarea">
+                                                        <label> توضیحات </label>
+                                                        <textarea name="desc" class="form-control2"
+                                                            id="tinymce"></textarea>
+                                                    </div>
+
+                                                    <div class="save_button primary_btn default_button"
+                                                        style="margin-top: 1rem;">
+                                                        <button type="submit">ارسال درخواست</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- my account end   -->

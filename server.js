@@ -63,6 +63,7 @@ app.use("/", require('./src/components/public/homeRouter'))
 app.use("/", require('./src/components/contact/contactRouter'))
 app.use("/auth", require('./src/components/auth/authRouter'))
 app.use("/user", require('./src/components/user/userRouter'))
+app.use("/user", require('./src/components/blog/blogRouter'))
 
 // ! admin
 app.use("/admin", require('./src/components/admin/public/adminRouter'))
