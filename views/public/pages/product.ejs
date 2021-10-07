@@ -6,7 +6,7 @@
                 <div class="product-details-tab">
                     <div id="img-1" class="zoomWrapper single-zoom">
                         <a href="#">
-                            <img id="zoom1" src="/uploads/images/<%= product.image[0] %>"
+                            <img id="zoom1" id="image" src="/uploads/images/<%= product.image[0] %>"
                                 data-zoom-image="/uploads/images/<%= product.image[0] %>" alt="<%= product.title %>">
                         </a>
                     </div>
@@ -27,9 +27,11 @@
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="product_d_right">
-                    <form action="#">
-
-                        <h1>
+                    <form action="#" id="card__item">
+                        <input type="hidden" id="product__id" value="<%= product.code %>">
+                        <input type="hidden" id="product__id_Seller" value="<%= product.seller %>">
+                        <input type="hidden" id="product__image" value="<%= product.image[0] %>">
+                        <h1 id="product__title">
                             <%= product.title %>
                         </h1>
                         <div class="price_box">
@@ -43,10 +45,7 @@
                             </p>
                         </div>
                         <div class="product_variant quantity">
-                            <label>تعداد</label>
-                            <input min="1" max="100" value="1" type="number">
-                            <button class="button" type="submit">افزودن به سبد</button>
-
+                            <button class="button" type="submit" id="addTocart">افزودن به سبد</button>
                         </div>
                         <div class=" product_d_action">
                             <ul>
@@ -58,7 +57,6 @@
                                     <%= category.name %>
                                 </a></span>
                         </div>
-
                     </form>
                     <div class="priduct_social">
                         <ul>
