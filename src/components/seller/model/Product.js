@@ -15,7 +15,7 @@ const productSchema = new Schema({
     code: { type: Number, required: true },
     view: { type: Number, default: 0 },
     productCategory: { type: Schema.Types.ObjectId, ref: "Category" },
-    seller: { type: Schema.Types.ObjectId, ref: "User" }
+    seller: { type: Schema.Types.ObjectId, ref: "Seller" }
 }, { timestamps: true })
 
 

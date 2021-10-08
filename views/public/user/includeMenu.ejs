@@ -6,10 +6,11 @@
         <li><a href="/user/edituser" class="nav-link">ویرایش حساب</a></li>
         <li><a href="/user/createTiket" class="nav-link">ارسال پیام</a></li>
         <li><a href="/user/createBlog" class="nav-link">ساخت بلاگ</a></li>
+        <li><a href="/user/carts" class="nav-link">سفارش های شما</a></li>
         <% if(user.isSeller==false){%>
             <li><a href="/user/requestStore" class="nav-link">درخواست فروشندگی</a></li>
             <%}else{%>
-            <li><a href="/seller" class="nav-link">داشبورد مدیریت فروشگاه</a></li>
+            <li><a href="/seller/dashboardSeller" class="nav-link">داشبورد مدیریت فروشگاه</a></li>
                 <%}%>
                     <li><a href="/auth/logout" class="nav-link">خروج</a></li>
     </ul>

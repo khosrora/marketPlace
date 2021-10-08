@@ -1,5 +1,6 @@
 const Category = require('../admin/categories/model/category');
 const Product = require('../seller/model/Product');
+const Seller = require('../admin/store/model/Seller');
 const fs = require('fs');
 
 const appRoot = require('app-root-path');
@@ -10,6 +11,40 @@ const { createId } = require('../../helper/nonoId');
 const { jalaliMoment } = require('../../helper/jalali');
 
 
+// ? desc ==> dashboard seller
+// ? method ==> get 
+exports.getDashboardSeller = async (req, res) => {
+    try {
+
+        // ! get items
+        const user = req.user;
+        const categories = await Category.find();
+
+        // ! get seller active
+        const seller = await Seller.findOne({
+            $and: [
+                { user: user._id },
+                { isActive: true }
+            ]
+        })
+
+        return res.render("seller/dashboardStore", {
+            title: "پنل فروشندگی",
+            breadCrumb: "پنل فروشندگی",
+            path: "/seller",
+            auth,
+            message: req.flash("success_msg"),
+            user,
+            seller,
+            categories,
+            jalaliMoment
+        })
+    } catch (err) {
+        console.log(err.message);
+    }
+}
+
+
 // ? desc ==> all product page
 // ? method ==> get 
 exports.getallProduct = async (req, res) => {
@@ -18,9 +53,16 @@ exports.getallProduct = async (req, res) => {
         // ! get items
         const user = req.user;
         const categories = await Category.find();
+        // ! get seller active
+        const seller = await Seller.findOne({
+            $and: [
+                { user: user._id },
+                { isActive: true }
+            ]
+        })
 
         // ! get product
-        const products = await Product.find({ seller: user.id })
+        const products = await Product.find({ seller: seller.id })
         if (products === null) {
             products = [];
         }
@@ -101,11 +143,18 @@ exports.createProduct = async (req, res, next) => {
         }
         // ! get items
         req.body = { ...req.body }
+        // ! fiind seller
+        const seller = await Seller.findOne({
+            $and: [
+                { user: user._id },
+                { isActive: true }
+            ]
+        })
         // !validation
         await Product.productValidate(req.body)
         // ! create product
         await Product.create({
-            ...req.body, image: files, code: createId(), seller: user._id, slug: slug(req.body.title)
+            ...req.body, image: files, code: createId(), seller: seller._id, slug: slug(req.body.title)
         })
         // ! redirect
         req.flash("success_msg", "اضافه کردن محصول با موفقیت به اتمام رسید")
@@ -113,7 +162,7 @@ exports.createProduct = async (req, res, next) => {
     } catch (err) {
         console.log(err.message);
         for (let file of files) {
-            fs.unlinkSync(`${appRoot}/public/uploads/images/` + file);
+            fs.unlinkSync(`${appRoot}/public/uploads/images/product/` + file);
         }
         errors.push({
             message: err.message
@@ -141,16 +190,17 @@ exports.deleteProduct = async (req, res) => {
         // ! remove product image
         if (products) {
             for (let file of products.image) {
-                fs.unlinkSync(`${appRoot}/public/uploads/images/` + file);
+                fs.unlinkSync(`${appRoot}/public/uploads/images/product/` + file);
             }
         }
         await Product.findByIdAndDelete({ _id: req.params.id });
 
         // ! send message
         req.flash("success_msg", "محصول با موفقیت حذف شد")
-        res.redirect("/seller")
+        res.redirect("/seller/dashboardSeller")
     } catch (err) {
         console.log(err.message);
+        res.redirect("/seller/dashboardSeller")
     }
 }
 

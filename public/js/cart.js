@@ -41,9 +41,9 @@ if (addToCartBtn !== null) {
 }
 // ! save to local storage
 const saveToLocalStorage = () => {
-    localStorage.setItem("cart___items", JSON.stringify(cartItems))
+    localStorage.setItem("cart___items", JSON.stringify(cartItems));
+    document.cookie = `cart___items  = ${JSON.stringify(cartItems)};`
 }
-
 // ! show product in cart html
 function addItemToTheDom(product) {
     cartDOM.insertAdjacentHTML("afterbegin", `
@@ -88,8 +88,6 @@ function loadData() {
                     priceItem(inItem, product)
                 }
             })
-
-
         });
         calculateTotal();
         saveToLocalStorage();

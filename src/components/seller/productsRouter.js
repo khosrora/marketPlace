@@ -22,6 +22,10 @@ const { uploadMultiple } = require('../../middleware/multer');
 // ? method ==> get 
 router.get("/", auth, isSeller, productsController.getallProduct)
 
+// ? desc ==> dashboard seller
+// ? method ==> get
+router.get("/dashboardSeller", auth, isSeller, productsController.getDashboardSeller)
+
 // ? desc ==> create product page
 // ? method ==> get 
 router.get("/createProduct", auth, isSeller, productsController.getCreateProduct)

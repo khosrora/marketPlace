@@ -4,24 +4,25 @@
         <form action="#">
             <div class="row">
                 <div class="col-12">
-                    <div class="table_desc">
-                        <div class="cart_page table-responsive">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th class="product_remove">حذف</th>
-                                        <th class="product_thumb">تصویر</th>
-                                        <th class="product_name">محصول</th>
-                                        <th class="product-price">قیمت</th>
-                                        <th class="product_quantity">تعداد</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="cart__items">
-     
-                                </tbody>
-                            </table>
+                    <%- include("../../includes/message") %>
+                        <div class="table_desc">
+                            <div class="cart_page table-responsive">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="product_remove">حذف</th>
+                                            <th class="product_thumb">تصویر</th>
+                                            <th class="product_name">محصول</th>
+                                            <th class="product-price">قیمت</th>
+                                            <th class="product_quantity">تعداد</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="cart__items">
+
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
                 </div>
             </div>
             <!--coupon code area start-->
@@ -34,9 +35,8 @@
                                 <p>جمع اجزا</p>
                                 <p class="cart_amount">0 تومان</p>
                             </div>
-
                             <div class="checkout_btn">
-                                <a href="#">پرداخت</a>
+                                <a href="/payment">پرداخت</a>
                             </div>
                         </div>
                     </div>

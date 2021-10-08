@@ -6,8 +6,8 @@
                 <div class="product-details-tab">
                     <div id="img-1" class="zoomWrapper single-zoom">
                         <a href="#">
-                            <img id="zoom1" id="image" src="/uploads/images/<%= product.image[0] %>"
-                                data-zoom-image="/uploads/images/<%= product.image[0] %>" alt="<%= product.title %>">
+                            <img id="zoom1" id="image" src="/uploads/images/product/<%= product.image[0] %>"
+                                data-zoom-image="/uploads/images/product/<%= product.image[0] %>" alt="<%= product.title %>">
                         </a>
                     </div>
                     <div class="single-zoom-thumb">
@@ -15,9 +15,9 @@
                             <% for(item of product.image){%>
                                 <li>
                                     <a href="#" class="elevatezoom-gallery active" data-update=""
-                                        data-image="/uploads/images/<%= item %>"
-                                        data-zoom-image="/uploads/images/<%= item %>">
-                                        <img src="/uploads/images/<%= item %>" alt="zo-th-1">
+                                        data-image="/uploads/images/product/<%= item %>"
+                                        data-zoom-image="/uploads/images/product/<%= item %>">
+                                        <img src="/uploads/images/product/<%= item %>" alt="zo-th-1">
                                     </a>
                                 </li>
                                 <%}%>
