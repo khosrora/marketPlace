@@ -5,7 +5,7 @@ const Category = require('../admin/categories/model/category');
 const Comment = require('./model/comment');
 const Product = require('../seller/model/Product');
 const Blog = require('../blog/model/Blog');
-
+const Cart = require('../cart/model/Cart');
 
 
 // * helper
@@ -204,6 +204,9 @@ exports.getRequestStore = async (req, res) => {
     }
 }
 
+
+// ? desc ==> request User
+// ? method ==> post
 exports.requestStore = async (req, res) => {
     const errors = [];
     // ! get user
@@ -246,6 +249,8 @@ exports.requestStore = async (req, res) => {
     }
 }
 
+// ? desc ==> comment User
+// ? method ==> post
 exports.comment = async (req, res) => {
     try {
         // !get items 
@@ -266,6 +271,34 @@ exports.comment = async (req, res) => {
         req.flash("success_msg", "پیام شما ارسال شد");
         return res.redirect(`/product/${product.slug}`);
 
+    } catch (err) {
+        console.log(err.message);
+    }
+}
+
+
+// ? desc ==> orders User
+// ? method ==> get
+exports.getOrdersUser = async (req, res) => {
+    try {
+        // ! get User & categories
+        const user = req.user;
+        const categories = await Category.find();
+
+        // ! get orders user
+        const orders = await Cart.find({ user: user._id })
+
+        res.render("public/user/ordersUser", {
+            title: "سفارشات کاربر",
+            breadCrumb: "سفارشات شما",
+            path: "/ordersUser",
+            auth,
+            message: req.flash("success_msg"),
+            user,
+            categories,
+            orders,
+            jalaliMoment
+        })
     } catch (err) {
         console.log(err.message);
     }

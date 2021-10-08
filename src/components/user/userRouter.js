@@ -44,13 +44,18 @@ router.post("/createTiket", auth, userController.createTiket)
 // ? method ==> get
 router.get("/requestStore", auth, userController.getRequestStore)
 
-// ? desc ==> edit User
+// ? desc ==> request User
 // ? method ==> post
 router.post("/requestStore", auth, userController.requestStore)
 
 // ? desc ==> comment User
 // ? method ==> post
 router.post("/comment", auth, userController.comment)
+
+
+// ? desc ==> orders User
+// ? method ==> get
+router.get("/carts", auth, userController.getOrdersUser)
 
 
 
