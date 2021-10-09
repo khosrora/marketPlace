@@ -334,7 +334,7 @@ exports.isSendProduct = async (req, res) => {
         order.isSend = true;
         await order.save();
         // ! charge wallet seller
-        seller.wallet = total;
+        seller.wallet = total + seller.wallet;
         await seller.save()
         // ! send sms
         //? user is find for send sms 
