@@ -1,0 +1,54 @@
+<%- include("../includeMenuBar")%>
+    <div class="col-xs-12 " style="margin-top: 10rem;">
+        <div class="well with-header with-footer">
+            <div class="header bordered-success">
+                محصولات تایید شده
+            </div>
+            <div class="table-scrollable">
+                <% if(products.length> 0){%>
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    عنوان
+                                </th>
+                                <th scope="col">
+                                    نام فروشنده
+                                </th>
+                                <th scope="col">
+                                    عملیات
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%for (product of products) {%>
+                                <tr>
+                                    <td>
+                                        <%= product.title %>
+                                    </td>
+                                    <td>
+                                        <%= product.seller.storeName %>
+                                    </td>
+                                    <td>
+                                        <% if(product.isAccept){%>
+                                            <a href="/admin/isShowProduct/<%= product.id %>"><span class="badge badge-success p-2"> قابل مشاهده</span></a>
+                                            <%} %>
+                                                <a href="/admin/detailProduct/<%= product.id %>"><span
+                                                        class="badge badge-azure p-2">جزئیات</span></a>
+                                    </td>
+
+                                    <%}%>
+                        </tbody>
+                    </table>
+                    <%}else {%>
+                        <div class="">
+                            <h4>محصولی ثبت نشده است</h4>
+                        </div>
+                        <%}%>
+            </div>
+            <div class="footer">
+            </div>
+        </div>
+
+    </div>
+    </div>

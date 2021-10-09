@@ -1,0 +1,99 @@
+<%- include("../includeMenuBar")%>
+
+    <!-- Page Body -->
+    <div class="page-body">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 col-xs-12">
+                <div class="well invoice-container">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <h3 class="">
+                                <i class="fa fa-check"></i>
+
+                            </h3>
+
+                        </div>
+                        <div class="col-xs-6 text-right">
+                            <h1>
+                                <%= product.seller.title %>
+                            </h1>
+                            <div>
+                                <span>تاریخ ارسال: <%= jalaliMoment(product.createdAt) %></span>
+                            </div>
+                            <div class="horizontal-space"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h6>اطلاعات ارسال کننده</h6>
+                                </div>
+                                <div class="panel-body">
+                                    <ul>
+                                        <li>
+                                            <%= product.seller.title %>
+                                        </li>
+                                        <li>
+                                            قیمت فروش : <%= product.price %>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-5">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h6>عنوان محصول</h6>
+                                </div>
+                                <div class="panel-body">
+                                    <%= product.title %>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- / end client details section -->
+                    <hr class="wide" />
+
+                    <div class="col-xs-12">
+                        <div class="span7">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h6>متن محصول</h6>
+                                </div>
+                                <div class="panel-body">
+                                    <%- product.desc %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        <div class="span7">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h6>مشخصات فنی محصول</h6>
+                                </div>
+                                <div class="panel-body">
+                                    <%- product.technical %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="wide" />
+                    <div class="invoice-notes">
+                        <h5>عکس بلاگ</h5>
+                        <p>
+                            <img src="/uploads/images/product/<%= product.image[0] %>" alt="" width="600" height="500"
+                                style="object-fit: cover;">
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Body -->
+    </div>
+    <!-- /Page Content -->
+    </div>
+    <!-- /Page Container -->
+    <!-- Main Container -->

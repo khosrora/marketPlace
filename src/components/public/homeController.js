@@ -74,7 +74,12 @@ exports.getAllProducts = async (req, res) => {
 
         // ! get items
         const categories = await Category.find();
-        const products = await Product.find();
+        const products = await Product.find({
+            $and: [
+                { isActive: true },
+                { isAccept: true }
+            ]
+        });
 
         res.render('public/pages/allProducts.ejs', {
             title: "محصولات",

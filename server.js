@@ -72,6 +72,7 @@ app.use("/admin", require('./src/components/admin/store/sellerRouter'))
 app.use("/admin", require('./src/components/admin/categories/categoriesRouter'))
 app.use("/admin", require('./src/components/admin/messages/messagesRouter'))
 app.use("/admin", require('./src/components/admin/blog/adminBlogRouter'))
+app.use("/admin", require('./src/components/admin/product/adminProductRouter'))
 
 // ! seller
 app.use("/seller", require('./src/components/seller/productsRouter'))
