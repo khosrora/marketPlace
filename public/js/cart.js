@@ -50,7 +50,7 @@ function addItemToTheDom(product) {
     <tr class="cart__item">
     <td class="product_remove" action='remove'><p class="h2" style="cursor:pointer;color : #0061d1;"><i class="fa fa-trash-o"></i></p></td>
     <td class="product_thumb">
-        <a href="#"><img src="/uploads/images/${product.image}" alt=""></a>
+        <a href="#"><img src="/uploads/images/product/${product.image}" alt=""></a>
         <input type="hidden" name="" id="product__id" value="${product.id}">
     </td>
     <td class="product_name"><a href="#">${product.title}</a></td>

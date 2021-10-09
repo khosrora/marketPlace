@@ -1,6 +1,8 @@
+const User = require('../user/model/User');
 const Category = require('../admin/categories/model/category');
 const Product = require('../seller/model/Product');
 const Seller = require('../admin/store/model/Seller');
+const Cart = require('../cart/model/Cart');
 const fs = require('fs');
 
 const appRoot = require('app-root-path');
@@ -249,3 +251,97 @@ exports.editProduct = async (req, res) => {
 }
 
 
+
+// ? desc ==> order Seller 
+// ? method ==> get 
+exports.getOrderSeller = async (req, res) => {
+    try {
+
+        // ! get items
+        const user = req.user;
+        const categories = await Category.find();
+        const product = await Product.findOne({ _id: req.params.id })
+        // ! fiind seller
+        const seller = await Seller.findOne({
+            $and: [
+                { user: user._id },
+                { isActive: true }
+            ]
+        })
+        console.log(seller);
+        //! get orders 
+        const orders = await Cart.find({
+            $and:
+                [
+                    { seller: seller._id },
+                    { isSuccess: true }
+                ]
+        })
+
+        return res.render("seller/order", {
+            title: "پنل فروشندگی",
+            breadCrumb: "ویرایش محصول",
+            path: "/createproduct",
+            auth,
+            message: req.flash("success_msg"),
+            user,
+            categories,
+            product,
+            orders,
+            jalaliMoment
+        })
+    } catch (err) {
+        console.log(err.message);
+    }
+}
+
+
+// ? desc ==> edit product page
+// ? method ==> get 
+exports.getDetailOrder = async (req, res) => {
+    try {
+
+        const user = req.user;
+        const categories = await Category.find();
+        const order = await Cart.findOne({ uniqueCode: req.params.code }).populate("user");
+
+        return res.render("seller/detailOrder", {
+            title: "پنل فروشندگی",
+            breadCrumb: "جزئیات سفارش",
+            path: "/createproduct",
+            auth,
+            message: req.flash("success_msg"),
+            user,
+            categories,
+            order,
+            jalaliMoment
+        })
+    } catch (err) {
+        console.log(err.message);
+    }
+}
+
+// ? desc ==>is send product
+// ? method ==> get 
+exports.isSendProduct = async (req, res) => {
+    try {
+        // ! find items
+        const order = await Cart.findOne({ uniqueCode: req.params.code }).populate("user");
+        const seller = await Seller.findOne({ _id: order.seller })
+        // ! calc total price for waller seller
+        const total = order.quantityProduct * order.priceProduct;
+        // ! set is send for order
+        order.isSend = true;
+        await order.save();
+        // ! charge wallet seller
+        seller.wallet = total;
+        await seller.save()
+        // ! send sms
+        //? user is find for send sms 
+        console.log("سفارش شما محصول فلان پردازش و ارسال خواهد شد");
+        req.flash("success_msg" , "محصول تایید و وجه محصول به حساب شما منظور گردید")
+        res.redirect("/seller/orderSeller")
+    } catch (err) {
+        console.log(err.message);
+    }
+}

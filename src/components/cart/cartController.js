@@ -7,6 +7,7 @@ const zarinpal = ZarinpalCheckout.create('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
 
 // ! helper
 const { createId } = require('../../helper/nonoId');
+const shortid = require('shortid');
 
 
 exports.cart = async (req, res) => {
@@ -60,14 +61,14 @@ exports.payment = async (req, res) => {
         //! Get a cookie
         const cartItems = JSON.parse(req.cookies.cart___items);
 
-        
+
         let totalCarts = 0;
         cartItems.forEach(async i => {
             var totalItemCarts = i.price * i.quantity;
             totalCarts += totalItemCarts++;
             await Cart.create({
                 user: user._id, seller: i.idSeller, titleProduct: i.title,
-                priceProduct: i.price, quantityProduct: i.quantity, codePayment: createId()
+                priceProduct: i.price, quantityProduct: i.quantity, codePayment: createId(), uniqueCode: shortid.generate()
             })
         })
 
@@ -106,9 +107,9 @@ exports.verifyPayment = async (req, res) => {
 
         if (status === "OK") {
             const carts = await Cart.find({ codePayment: req.query.q })
-            carts.forEach(i => {
+            carts.forEach(async i => {
                 i.isSuccess = true;
-                i.save();
+                await i.save();
             })
 
             // ! send message

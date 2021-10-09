@@ -46,6 +46,18 @@ router.get("/editProduct/:id", auth, isSeller, productsController.getEditProduct
 // ? method ==> get 
 router.post("/editProduct", auth, isSeller, productsController.editProduct)
 
+// ? desc ==> order Seller 
+// ? method ==> get 
+router.get("/orderSeller", auth, isSeller, productsController.getOrderSeller)
+
+// ? desc ==> detail Order 
+// ? method ==> get 
+router.get("/detailOrder/:code", auth, isSeller, productsController.getDetailOrder)
+
+// ? desc ==>is send product
+// ? method ==> get 
+router.get("/isSend/:code", auth, isSeller, productsController.isSendProduct)
+
 
 
 
