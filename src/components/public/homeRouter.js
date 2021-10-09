@@ -29,6 +29,18 @@ router.get("/allProducts", auth, userController.getAllProducts)
 // ? method ==> get 
 router.get("/product/:slug", auth, userController.getProduct)
 
+// ? desc ==>  search input
+// ? method ==> get 
+router.post("/search", auth, userController.searchUser)
+
+// ? desc ==>  blogs
+// ? method ==> get 
+router.get("/blogs", auth, userController.getBlogs)
+
+// ? desc ==> detail blog
+// ? method ==> get 
+router.get("/blogDetail/:id", auth, userController.detailBlog)
+
 
 
 

@@ -1,0 +1,90 @@
+<%- include("../includeMenuBar")%>
+
+    <!-- Page Body -->
+    <div class="page-body">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 col-xs-12">
+                <div class="well invoice-container">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <h3 class="">
+                                <i class="fa fa-check"></i>
+
+                            </h3>
+
+                        </div>
+                        <div class="col-xs-6 text-right">
+                            <h1>
+                                <%= blog.user.firstName %>
+                            </h1>
+                            <div>
+                                <span>تاریخ ارسال: <%= jalaliMoment(blog.createdAt) %></span>
+                            </div>
+                            <div class="horizontal-space"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h6>اطلاعات ارسال کننده</h6>
+                                </div>
+                                <div class="panel-body">
+                                    <ul>
+                                        <li>
+                                            <%= blog.user.firstName %>
+                                                <%= blog.user.lastName %>
+                                        </li>
+                                        <li>
+                                            <%= blog.user.email %>
+                                        </li>
+                                        <li>
+                                            <%= blog.user.mobile %>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-5">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h6>عنوان بلاگ</h6>
+                                </div>
+                                <div class="panel-body">
+                                    <%= blog.title %>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- / end client details section -->
+                    <hr class="wide" />
+
+                    <div class="col-xs-12">
+                        <div class="span7">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h6>متن بلاگ</h6>
+                                </div>
+                                <div class="panel-body">
+                                    <%- blog.desc %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="wide" />
+                    <div class="invoice-notes">
+                        <h5>عکس بلاگ</h5>
+                        <p>
+                            <img src="/uploads/images/blog/<%= blog.image %>" alt="" width="600" height="500"
+                                style="object-fit: cover;">
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Body -->
+    </div>
+    <!-- /Page Content -->
+    </div>
+    <!-- /Page Container -->
+    <!-- Main Container -->

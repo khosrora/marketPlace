@@ -46,7 +46,7 @@
 							<a href="javascript:void(0)"><i class="ion-android-close"></i></a>
 						</div>
 						<div class="support_info">
-							<p>تلفن تماس: <a class="ltr-text" href="tel:+989123456789">+(98) 123 456 789</a></p>
+							<p>تلفن تماس: <a class="ltr-text" href="tel:+989123456789">+(98) 9332839823</a></p>
 						</div>
 						<div class="top_right text-right">
 							<ul></ul>
@@ -60,12 +60,12 @@
 										</ul>
 						</div>
 						<div class="search_container">
-							<form action="#">
+							<form action="/search" method="POST">
 								<div class="hover_category">
-									<select class="select_option" name="select" id="categori">
+									<select class="select_option" name="idCatetory" id="categori">
 										<option selected value="1">همه دسته ها</option>
 										<% for(categorie of categories) {%>
-											<option value="<%= categorie.name %>">
+											<option value="<%= categorie.id %>">
 												<%= categorie.name %>
 											</option>
 											<%}%>
@@ -86,17 +86,8 @@
 							<div class="mini_cart_wrapper">
 								<a href="javascript:void(0)"><i class="fa fa-shopping-bag" aria-hidden="true"></i> <i
 										class="fa fa-angle-down"></i></a>
-								<span class="cart_quantity">2</span>
 								<!--mini cart-->
 								<div class="mini_cart">
-
-									<div class="mini_cart_table">
-										<div class="cart_total mt-10">
-											<span>جمع کل:</span>
-											<span class="price">138,000 تومان </span>
-										</div>
-									</div>
-
 									<div class="mini_cart_footer">
 										<div class="cart_button">
 											<a href="/cart">مشاهده سبد</a>
@@ -121,6 +112,9 @@
 										</li>
 										<li class="menu-item-has-children">
 											<a href="/contactus"> تماس با ما</a>
+										</li>
+										<li class="menu-item-has-children">
+											<a href="/blogs"> بلاگ ها </a>
 										</li>
 										<li class="menu-item-has-children">
 											<a href="#">صفحات </a>
@@ -156,7 +150,7 @@
 					<div class="row align-items-center">
 						<div class="col-lg-6 col-md-6">
 							<div class="support_info">
-								<p>تلفن تماس: <a class="ltr-text" href="tel:+989123456789">+(98) 123 456 789</a></p>
+								<p>تلفن تماس: <a class="ltr-text" href="tel:+989332839823">+(98) 9332839823</a></p>
 							</div>
 						</div>
 						<div class="col-lg-6 col-md-6">
@@ -188,18 +182,18 @@
 						<div class="col-lg-9 col-md-6">
 							<div class="middel_right">
 								<div class="search_container">
-									<form action="#">
+									<form action="/search" method="POST">
 										<div class="hover_category">
-											<select class="select_option" name="select" id="categori1">
+											<select class="select_option" name="idCatetory" id="categori1">
 												<% for(categorie of categories) {%>
-													<option value="<%= categorie.name %>">
+													<option value="<%= categorie.id %>">
 														<%= categorie.name %>
 													</option>
 													<%}%>
 											</select>
 										</div>
 										<div class="search_box">
-											<input placeholder="جستجوی محصول ..." type="text">
+											<input placeholder="جستجوی محصول ..." type="text" name="item">
 											<button type="submit">جستجو</button>
 										</div>
 									</form>
@@ -212,16 +206,8 @@
 									<div class="mini_cart_wrapper">
 										<a href="javascript:void(0)"><i class="fa fa-shopping-bag"
 												aria-hidden="true"></i> <i class="fa fa-angle-down"></i></a>
-										<span class="cart_quantity">2</span>
 										<!--mini cart-->
 										<div class="mini_cart">
-											<div class="mini_cart_table">
-												<div class="cart_total mt-10">
-													<span >جمع کل:</span>
-													<span class="price">138,000 تومان </span>
-												</div>
-											</div>
-
 											<div class="mini_cart_footer">
 												<div class="cart_button">
 													<a href="/cart">مشاهده سبد</a>
@@ -260,7 +246,7 @@
 															</a>
 															<ul class="categorie_sub_menu">
 																<% for (item of items.tags){%>
-																	<li><a href="">
+																	<li><a href="/searchItem/<%= categorie._id %>">
 																			<%= item %>
 																		</a></li>
 																	<%}%>
@@ -285,6 +271,7 @@
 										</li>
 										<li><a href="/aboutUs">درباره ما</a></li>
 										<li><a href="/contactus"> تماس با ما</a></li>
+										<li><a href="/blogs"> بلاگ ها </a></li>
 									</ul>
 								</nav>
 							</div>
@@ -313,6 +300,7 @@
 								<ul>
 									<li><a href="/aboutUs">درباره ما</a></li>
 									<li><a href="/contactus"> تماس با ما</a></li>
+									<li><a href="/blogs"> بلاگ ها </a></li>
 								</ul>
 							</nav>
 						</div>
@@ -324,16 +312,8 @@
 							<div class="mini_cart_wrapper">
 								<a href="javascript:void(0)"><i class="fa fa-shopping-bag" aria-hidden="true"></i> <i
 										class="fa fa-angle-down"></i></a>
-								<span class="cart_quantity">2</span>
 								<!--mini cart-->
 								<div class="mini_cart">
-									<div class="mini_cart_table">
-										<div class="cart_total mt-10">
-											<span>جمع کل:</span>
-											<span class="price">138,000 تومان </span>
-										</div>
-									</div>
-
 									<div class="mini_cart_footer">
 										<div class="cart_button">
 											<a href="/cart">مشاهده سبد</a>

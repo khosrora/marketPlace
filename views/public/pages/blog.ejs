@@ -1,0 +1,77 @@
+<!--breadcrumbs area start-->
+<div class="breadcrumbs_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="index.html">خانه</a></li>
+                        <li>
+                            <%= breadCrumb %>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--breadcrumbs area end-->
+
+<!--blog body area start-->
+<div class="blog_details mt-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <!--blog grid area start-->
+                <div class="blog_wrapper">
+                    <article class="single_blog">
+                        <figure>
+                            <div class="post_header">
+                                <h3 class="post_title">
+                                    <%= blog.title%>
+                                </h3>
+                                <div class="blog_meta">
+                                    <span class="author">ارسال توسط : <a href="#">
+                                            <%= blog.user.firstName %>
+                                        </a> / </span>
+                                    <span class="post_date">در : <a href="#">
+                                            <%= jalaliMoment(blog.createdAt) %>
+                                        </a> /</span>
+                                </div>
+                            </div>
+                            <div class="blog_thumb">
+                                <a href="#"><img src="/uploads/images/blog/<%= blog.image %>" alt=""></a>
+                            </div>
+                            <figcaption class="blog_content">
+                                <div class="post_content">
+                                    <blockquote>
+                                        <p>
+                                            <%- truncate(blog.desc , 200) %>
+                                        </p>
+                                    </blockquote>
+                                    <p>
+                                        <%- blog.desc %>
+                                    </p>
+                                </div>
+                                <div class="entry_content">
+                                    <div class="social_sharing">
+                                        <p>اشتراک گذاری این مطلب:</p>
+                                        <ul>
+                                            <li><a href="#" title="facebook"><i class="fa fa-facebook"></i></a></li>
+                                            <li><a href="#" title="twitter"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="#" title="pinterest"><i class="fa fa-pinterest"></i></a></li>
+                                            <li><a href="#" title="google+"><i class="fa fa-google-plus"></i></a></li>
+                                            <li><a href="#" title="linkedin"><i class="fa fa-linkedin"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </div>
+                <!--blog grid area start-->
+            </div>
+        </div>
+    </div>
+</div>
+<!--blog section area end-->

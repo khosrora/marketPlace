@@ -1,5 +1,6 @@
 const Seller = require('../store/model/Seller');
 const User = require('../../user/model/User');
+const Blog = require('../../blog/model/Blog');
 
 
 
@@ -9,7 +10,7 @@ exports.index = async (req, res) => {
 
         const sellers = await Seller.find({ isActive: false }).countDocuments();
         const users = await User.find().countDocuments();
-        
+        const blogs = await Blog.find({ isShow: false }).countDocuments();
 
         res.render("admin/index", {
             layout: "./layouts/adminLayout",
@@ -17,7 +18,8 @@ exports.index = async (req, res) => {
             breadCrumb: "پنل مدیریت",
             user,
             sellers,
-            users
+            users,
+            blogs
         })
     } catch (err) {
         console.log(err.message);

@@ -1,6 +1,7 @@
 const Category = require('../admin/categories/model/category');
 const Product = require('../seller/model/Product');
 const Comment = require('../user/model/comment');
+const Blog = require('../blog/model/Blog');
 
 
 // ! helper
@@ -115,6 +116,77 @@ exports.getProduct = async (req, res) => {
             jalaliMoment,
             message: req.flash("success_msg")
         })
+    } catch (err) {
+        console.log(err.message);
+    }
+}
+
+// ? desc ==>  search input
+// ? method ==> get 
+exports.searchUser = async (req, res) => {
+    try {
+        // ! get body
+        const { idCatetory } = req.body;
+        // ! get items
+        const categories = await Category.find();
+        const products = await Product.find({ productCategory: idCatetory })
+
+        return res.render('public/pages/allProducts.ejs', {
+            title: "محصولات",
+            path: '/aboutUs',
+            categories,
+            auth,
+            products,
+            truncate
+        })
+
+    } catch (err) {
+        console.log(err.message);
+    }
+}
+
+// ? desc ==>  blogs
+// ? method ==> get 
+exports.getBlogs = async (req, res) => {
+    try {
+
+        // ! get blogs is show === true
+        const blogs = await Blog.find({ isShow: true }).populate("user");
+        // ! get items
+        const categories = await Category.find();
+        return res.render('public/pages/allBlogs.ejs', {
+            title: "محصولات",
+            path: '/aboutUs',
+            breadCrumb: "بلاگ ها",
+            categories,
+            auth,
+            blogs,
+            truncate,
+            jalaliMoment
+        })
+    } catch (err) {
+        console.log(err.message);
+    }
+}
+
+// ? desc ==> detail blog
+// ? method ==> get 
+exports.detailBlog = async (req, res) => {
+    try {
+        // ! find blog
+        const categories = await Category.find();
+        const blog = await Blog.findOne({ _id: req.params.id }).populate("user")
+        return res.render('public/pages/blog.ejs', {
+            title: "محصولات",
+            path: '/aboutUs',
+            breadCrumb: "جزئیات بلاگ ",
+            categories,
+            auth,
+            blog,
+            truncate,
+            jalaliMoment
+        })
+
     } catch (err) {
         console.log(err.message);
     }
