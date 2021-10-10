@@ -57,6 +57,14 @@ router.post("/comment", auth, userController.comment)
 // ? method ==> get
 router.get("/carts", auth, userController.getOrdersUser)
 
+// ? desc ==> addToFav User
+// ? method ==> get
+router.get("/addToFav/:id", auth, userController.addToFav)
+
+// ? desc ==> wishlist User
+// ? method ==> get
+router.get("/wishlist", auth, userController.wishList)
+
 
 
 

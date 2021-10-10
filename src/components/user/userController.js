@@ -10,6 +10,7 @@ const Cart = require('../cart/model/Cart');
 
 // * helper
 const { jalaliMoment } = require('../../helper/jalali');
+const { truncate } = require('../../helper/truncate');
 const { createId } = require('../../helper/nonoId');
 
 // ? desc ==> dashboard user
@@ -298,6 +299,44 @@ exports.getOrdersUser = async (req, res) => {
             categories,
             orders,
             jalaliMoment
+        })
+    } catch (err) {
+        console.log(err.message);
+    }
+}
+
+
+// ? desc ==> addToFav User
+// ? method ==> get
+exports.addToFav = async (req, res) => {
+    try {
+        // ! user
+        const user = req.user;
+        await User.findByIdAndUpdate({ _id: user._id }, {
+            $push: { fav: req.params.id }
+        })
+        res.writeHead(303, { Location: req.headers.referer });
+        res.end();
+    } catch (err) {
+        console.log(err.message);
+    }
+}
+
+// ? desc ==> addToFav User
+// ? method ==> get
+exports.wishList = async (req, res) => {
+    try {
+        // ! get items
+        const user = req.user;
+        const categories = await Category.find();
+        var products = await Product.find({ _id: user.fav });
+        res.render('public/pages/allProducts.ejs', {
+            title: "محصولات",
+            path: '/aboutUs',
+            categories,
+            auth,
+            products,
+            truncate
         })
     } catch (err) {
         console.log(err.message);

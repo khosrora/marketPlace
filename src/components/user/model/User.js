@@ -14,6 +14,7 @@ const userSchema = new Schema({
     firstName: { type: String, trim: true, required: true },
     lastName: { type: String, trim: true, required: true },
     address: { type: String, required: false },
+    fav: [{ type: Schema.Types.ObjectId, ref: "Product" }],
     isBloocked: { type: Boolean, default: false },
     isSeller: { type: Boolean, default: false },
     role: { type: String, enum: ["User", "Admin"], default: "User" }
