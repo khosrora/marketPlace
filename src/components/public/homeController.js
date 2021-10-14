@@ -12,15 +12,12 @@ const { jalaliMoment } = require('../../helper/jalali');
 // ? method ==> get 
 exports.home = async (req, res) => {
     try {
-
-
         const categories = await Category.find();
-
         res.render('public/pages/index.ejs', {
             title: "صفحه اصلی",
             path: '/',
             auth,
-            categories
+            categories,
         })
 
     } catch (err) {
@@ -31,11 +28,8 @@ exports.home = async (req, res) => {
 // ? desc ==> contact us page
 // ? method ==> get 
 exports.contactUs = async (req, res) => {
-
     try {
-
         const categories = await Category.find();
-
         res.render('public/pages/contactUs.ejs', {
             title: "صفحه تماس با ما",
             path: '/contactUs',
@@ -53,9 +47,7 @@ exports.contactUs = async (req, res) => {
 // ? method ==> get 
 exports.aboutUs = async (req, res) => {
     try {
-
         const categories = await Category.find();
-
         res.render('public/pages/aboutUs.ejs', {
             title: "صفحه درباره ما",
             path: '/aboutUs',
@@ -70,16 +62,18 @@ exports.aboutUs = async (req, res) => {
 // ? desc ==> all products page
 // ? method ==> get 
 exports.getAllProducts = async (req, res) => {
+    const page = +req.query.page || 1;
+    const postPerPage = 2;
     try {
-
         // ! get items
         const categories = await Category.find();
+        const numberOfUsers = await Product.find().countDocuments();
         const products = await Product.find({
             $and: [
                 { isActive: true },
                 { isAccept: true }
             ]
-        });
+        }).sort({ createdAt: -1 }).skip((page - 1) * postPerPage).limit(postPerPage);
 
         res.render('public/pages/allProducts.ejs', {
             title: "محصولات",
@@ -87,7 +81,13 @@ exports.getAllProducts = async (req, res) => {
             categories,
             auth,
             products,
-            truncate
+            truncate,
+            currentPage: page,
+            nextPage: page + 1,
+            previousPage: page - 1,
+            hasNextPage: postPerPage * page < numberOfUsers,
+            hasPeriviousPage: page > 1,
+            lastPage: Math.ceil(numberOfUsers / postPerPage),
         })
     } catch (err) {
         console.log(err.message);
@@ -153,10 +153,12 @@ exports.searchUser = async (req, res) => {
 // ? desc ==>  blogs
 // ? method ==> get 
 exports.getBlogs = async (req, res) => {
+    const page = +req.query.page || 1;
+    const postPerPage = 5;
     try {
-
         // ! get blogs is show === true
-        const blogs = await Blog.find({ isShow: true }).populate("user");
+        const numberOfBlogs = await Product.find().countDocuments();
+        const blogs = await Blog.find({ isShow: true }).populate("user").sort({ createdAt: -1 }).skip((page - 1) * postPerPage).limit(postPerPage);
         // ! get items
         const categories = await Category.find();
         return res.render('public/pages/allBlogs.ejs', {
@@ -167,7 +169,13 @@ exports.getBlogs = async (req, res) => {
             auth,
             blogs,
             truncate,
-            jalaliMoment
+            jalaliMoment,
+            currentPage: page,
+            nextPage: page + 1,
+            previousPage: page - 1,
+            hasNextPage: postPerPage * page < numberOfBlogs,
+            hasPeriviousPage: page > 1,
+            lastPage: Math.ceil(numberOfBlogs / postPerPage),
         })
     } catch (err) {
         console.log(err.message);

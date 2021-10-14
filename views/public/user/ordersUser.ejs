@@ -45,7 +45,7 @@
                                                             <%= order.priceProduct %> تومان
                                                         </td>
                                                         <td class="product_total">
-                                                            <%= order.quantityProduct %> 
+                                                            <%= order.quantityProduct %>
                                                         </td>
                                                         <td class="product_total">
                                                             <% if(order.isSuccess){%>
@@ -67,6 +67,7 @@
                                             <%}%>
                                 </div>
                             </div>
+                            <%- include("../../includes/paginate") %>
                         </div>
 
 

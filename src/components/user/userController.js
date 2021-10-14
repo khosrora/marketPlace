@@ -90,11 +90,14 @@ exports.editUser = async (req, res) => {
 // ? desc ==> tikets User
 // ? method ==> get
 exports.getTiketsUser = async (req, res) => {
+    const page = +req.query.page || 1;
+    const postPerPage = 5;
     try {
         // ! get User && tikets
         const user = req.user;
-        const tikets = await Tiket.find({ user: user.id })
-        const categories = await Category.find();
+        const numberOftikets = await Tiket.find().countDocuments();
+        const tikets = await Tiket.find({ user: user.id }).sort({ createdAt: -1 }).skip((page - 1) * postPerPage).limit(postPerPage);
+        const categories = await Category.find()
 
         res.render("public/user/tikets", {
             title: "پیام های شما",
@@ -105,7 +108,13 @@ exports.getTiketsUser = async (req, res) => {
             user,
             categories,
             tikets,
-            jalaliMoment
+            jalaliMoment,
+            currentPage: page,
+            nextPage: page + 1,
+            previousPage: page - 1,
+            hasNextPage: postPerPage * page < numberOftikets,
+            hasPeriviousPage: page > 1,
+            lastPage: Math.ceil(numberOftikets / postPerPage),
         })
     } catch (err) {
         console.log(err.message);
@@ -281,13 +290,16 @@ exports.comment = async (req, res) => {
 // ? desc ==> orders User
 // ? method ==> get
 exports.getOrdersUser = async (req, res) => {
+    const page = +req.query.page || 1;
+    const postPerPage = 5;
     try {
         // ! get User & categories
         const user = req.user;
         const categories = await Category.find();
 
         // ! get orders user
-        const orders = await Cart.find({ user: user._id })
+        const numberOforders = await Cart.find().countDocuments();
+        const orders = await Cart.find({ user: user._id }).sort({ createdAt: -1 }).skip((page - 1) * postPerPage).limit(postPerPage);
 
         res.render("public/user/ordersUser", {
             title: "سفارشات کاربر",
@@ -298,7 +310,13 @@ exports.getOrdersUser = async (req, res) => {
             user,
             categories,
             orders,
-            jalaliMoment
+            jalaliMoment,
+            currentPage: page,
+            nextPage: page + 1,
+            previousPage: page - 1,
+            hasNextPage: postPerPage * page < numberOforders,
+            hasPeriviousPage: page > 1,
+            lastPage: Math.ceil(numberOforders / postPerPage),
         })
     } catch (err) {
         console.log(err.message);

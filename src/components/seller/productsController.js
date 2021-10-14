@@ -50,6 +50,8 @@ exports.getDashboardSeller = async (req, res) => {
 // ? desc ==> all product page
 // ? method ==> get 
 exports.getallProduct = async (req, res) => {
+    const page = +req.query.page || 1;
+    const postPerPage = 5;
     try {
 
         // ! get items
@@ -64,7 +66,8 @@ exports.getallProduct = async (req, res) => {
         })
 
         // ! get product
-        const products = await Product.find({ seller: seller.id })
+        const numberOfProducts = await Product.find().countDocuments();
+        const products = await Product.find({ seller: seller.id }).sort({ createdAt: -1 }).skip((page - 1) * postPerPage).limit(postPerPage);
         if (products === null) {
             products = [];
         }
@@ -72,14 +75,20 @@ exports.getallProduct = async (req, res) => {
 
         return res.render("seller/products", {
             title: "پنل فروشندگی",
-            breadCrumb: "پنل فروشندگی",
+            breadCrumb: "محصولات شما",
             path: "/seller",
             auth,
             message: req.flash("success_msg"),
             user,
             categories,
             products,
-            jalaliMoment
+            jalaliMoment,
+            currentPage: page,
+            nextPage: page + 1,
+            previousPage: page - 1,
+            hasNextPage: postPerPage * page < numberOfProducts,
+            hasPeriviousPage: page > 1,
+            lastPage: Math.ceil(numberOfProducts / postPerPage),
         })
     } catch (err) {
         console.log(err.message);
@@ -255,11 +264,13 @@ exports.editProduct = async (req, res) => {
 // ? desc ==> order Seller 
 // ? method ==> get 
 exports.getOrderSeller = async (req, res) => {
+    const page = +req.query.page || 1;
+    const postPerPage = 5;
     try {
-
         // ! get items
         const user = req.user;
         const categories = await Category.find();
+        // ! find products
         const product = await Product.findOne({ _id: req.params.id })
         // ! fiind seller
         const seller = await Seller.findOne({
@@ -268,19 +279,19 @@ exports.getOrderSeller = async (req, res) => {
                 { isActive: true }
             ]
         })
-        console.log(seller);
         //! get orders 
+        const numberOfProducts = await Product.find().countDocuments();
         const orders = await Cart.find({
             $and:
                 [
                     { seller: seller._id },
                     { isSuccess: true }
                 ]
-        })
+        }).sort({ createdAt: -1 }).skip((page - 1) * postPerPage).limit(postPerPage);
 
         return res.render("seller/order", {
             title: "پنل فروشندگی",
-            breadCrumb: "ویرایش محصول",
+            breadCrumb: "محصولات فروش رفته",
             path: "/createproduct",
             auth,
             message: req.flash("success_msg"),
@@ -288,7 +299,13 @@ exports.getOrderSeller = async (req, res) => {
             categories,
             product,
             orders,
-            jalaliMoment
+            jalaliMoment,
+            currentPage: page,
+            nextPage: page + 1,
+            previousPage: page - 1,
+            hasNextPage: postPerPage * page < numberOfProducts,
+            hasPeriviousPage: page > 1,
+            lastPage: Math.ceil(numberOfProducts / postPerPage),
         })
     } catch (err) {
         console.log(err.message);
@@ -339,7 +356,7 @@ exports.isSendProduct = async (req, res) => {
         // ! send sms
         //? user is find for send sms 
         console.log("سفارش شما محصول فلان پردازش و ارسال خواهد شد");
-        req.flash("success_msg" , "محصول تایید و وجه محصول به حساب شما منظور گردید")
+        req.flash("success_msg", "محصول تایید و وجه محصول به حساب شما منظور گردید")
         res.redirect("/seller/orderSeller")
     } catch (err) {
         console.log(err.message);
